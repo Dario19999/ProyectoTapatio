@@ -6,11 +6,12 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   templateUrl: './inicio.component.html'
 })
 export class InicioComponent implements OnInit {
+
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
     touchDrag: true,
-    pullDrag: true,
+    pullDrag: false,
     dots: true,
     navSpeed: 700,
     navText: ['Previous', 'Next'],
@@ -30,6 +31,7 @@ export class InicioComponent implements OnInit {
     },
     nav: true
   }
+
   constructor() { }
 
   ngOnInit() {

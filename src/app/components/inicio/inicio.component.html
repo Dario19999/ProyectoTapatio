@@ -1,4 +1,4 @@
-<div id="carouselExampleIndicators" class="carousel slide animated fadeIn" data-ride="carousel" data-interval="5000">
+<div id="carouselExampleIndicators" class="carousel slide animated fadeIn container-fluid p-0" data-ride="carousel" data-interval="5000">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -37,9 +37,10 @@
     </a>
 </div>
 
-<div class="contaienr-fluid mt-4 p-4 border rounded">
-    <div class="container-fluid text-center pb-3">
+<div class="contaienr-fluid m-4 p-2 border rounded animated fadeIn fast">
+    <div class="container-fluid text-center">
         <h3>Eventos más vistos</h3>
+        <hr>
     </div>
     <owl-carousel-o [options]="customOptions">
         <ng-template carouselSlide>
@@ -105,9 +106,10 @@
     </owl-carousel-o>
 </div>
 
-<div class="container-fluid mb-5 mt-4 p-4 border rounded">
-    <div class="container-fluid text-center pb-3">
+<div class="contaienr-fluid m-4 p-2 border rounded animated fadeIn fast">
+    <div class="container-fluid text-center">
         <h3> Publicaciones Recientes </h3>
+        <hr>
     </div>
     <owl-carousel-o [options]="customOptions">
         <ng-template carouselSlide>
@@ -188,3 +190,6 @@
         </ng-template>
     </owl-carousel-o>
 </div>
+<br>
+<br>
+<br>

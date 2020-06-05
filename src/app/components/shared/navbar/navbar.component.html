@@ -24,6 +24,46 @@
                 <a class="nav-link" [routerLink]="['nosotros']">Nosotros</a>
             </li>
         </ul>
-        <button (click)="verPerfil()" class="btn btn-success my-2 my-sm-0" type="button">Cuenta</button>
+        <button class="btn btn-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#myModal">Iniciar Sesi&oacute;n</button>
     </div>
 </nav>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="container-fluid text-center">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h5 class="modal-title" id="myModalLabel">Iniciar Sesi&oacute;n</h5>
+                </div>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-outline-primary btn-block">
+                  <img class="float-left" src="/assets/img/facebook-icon.png" alt="facebook-icon" width="30px" height="30px">
+                  Inicia sesion con Facebook
+                </button>
+                <hr>
+                <div class="container-fluid text-center">
+                    <h5>Repartidores</h5>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Correo electr&oacute;nico</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej. alguien@gmail.com">
+                        <small id="emailHelp" class="form-text text-muted">No comparts tu informaci&oacute;n con nadie.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Contraseña</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="container-fluid text-center">
+                    <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success">Iniciar Sesi&oacute;n</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
