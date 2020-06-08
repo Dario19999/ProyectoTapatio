@@ -1,1 +1,80 @@
-<p>evento-view works!</p>
+<div class="container-fluid animated fadeIn fast mt-3">
+    <div class="card mb-3 border-primary">
+        <div class="card-header border-primary">
+            <h4>Nombre de Evento</h4>
+        </div>
+        <div class="card-body">
+            <owl-carousel-o [options]="customOptions">
+                <ng-template carouselSlide>
+                    <div class="slide">
+                        <img src="https://i.picsum.photos/id/905/400/300.jpg">
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="slide">
+                        <img src="https://i.picsum.photos/id/507/400/300.jpg">
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="slide">
+                        <img src="https://i.picsum.photos/id/609/400/300.jpg">
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="slide">
+                        <img src="https://i.picsum.photos/id/995/400/300.jpg">
+                    </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                    <div class="slide">
+                        <img src="https://i.picsum.photos/id/1054/400/300.jpg">
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+            <hr>
+            <div class="container-fluid">
+                <h4>Descrpición</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur excepturi facilis voluptatum tempore quam deleniti molestias vero atque? Magni culpa commodi ipsam soluta et sit quod blanditiis fugit nostrum similique.</p>
+            </div>
+        </div>
+        <div class="card-footer">
+            <p class="card-text"><small class="text-muted">20/04/2020</small></p>
+        </div>
+    </div>
+
+    <div class="card mb-3 border-success">
+        <div class="card-header border-success">
+            <h4>Boletos</h4>
+        </div>
+        <div class="card-body">
+            <div class="container-fluid">
+                <div class="row h-100">
+                    <div class="col-md-4">
+                        <h5>Cantidad Seleccionada:</h5>
+                        <h1>0</h1>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>En inventario:</h5>
+                        <h1>0</h1>
+                    </div>
+                    <div class="col-md-4 my-auto">
+                        <form>
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                              <option selected>Selecciona la Cantidad de Boletos</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                           </select>
+                            <div class="text-center mt-3">
+                                <button type="submit" class="btn btn-outline-success">Comprar Boletos</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>

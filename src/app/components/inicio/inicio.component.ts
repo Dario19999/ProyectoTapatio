@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -32,9 +33,15 @@ export class InicioComponent implements OnInit {
     nav: true
   }
 
-  constructor() { }
+  constructor( private router:Router) { }
 
   ngOnInit() {
   }
 
+  verEvento(){
+    this.router.navigate(['evento'])
+  }
+  verPublicacion(){
+    this.router.navigate(['publicacion'])
+  }
 }

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary animated fadeIn fast">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary animated fadeIn fast" *ngIf="router.url != '/admin'">
     <a class="navbar-brand nav-logo" [routerLink]="['inicio']">
         <img src="/assets/img/icon.png" width="50" height="50" alt="">
     </a>
@@ -46,15 +46,17 @@
                 <div class="container-fluid text-center">
                     <h5>Repartidores</h5>
                 </div>
-                <form>
+                <form (ngSubmit)="guardar(forma)" #forma="ngForm">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Correo electr&oacute;nico</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ej. alguien@gmail.com">
-                        <small id="emailHelp" class="form-text text-muted">No comparts tu informaci&oacute;n con nadie.</small>
+                        <label>Correo electr&oacute;nico</label>
+                        <input type="email" class="form-control" name="correo" placeholder="Ej. alguien@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ngModel [class.is-invalid]="correo.invalid && correo.touched" #correo="ngModel" required>
+                        <small *ngIf="correo.invalid && correo.touched" class="form-text text-danger">Obligatorio. Ingrese un correo válido</small>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Contraseña</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+                        <label>Contraseña</label>
+                        <input type="password" class="form-control" name="contra" placeholder="Contraseña" minlength="8" ngModel [class.is-invalid]="contra.invalid && contra.touched" #contra="ngModel" required>
+                        <small *ngIf="contra.invalid && contra.touched" class="form-text text-danger">Obligatorio. Mínimo 8 caracteres.</small>
+                        <small *ngIf="contra.invalid && contra.touched" class="form-text text-danger">Mínimo una mayúscula y un número.</small>
                     </div>
                 </form>
             </div>
