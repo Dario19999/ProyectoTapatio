@@ -15,7 +15,6 @@ import { EventoViewComponent } from './components/evento-view/evento-view.compon
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PublicacionViewComponent } from './components/publicacion-view/publicacion-view.component';
 import { FormsModule } from '@angular/forms';
-import { DashboardComponent } from './components/admin-components/dashboard/dashboard.component';
 import { HistorialComprasComponent } from './components/historial-compras/historial-compras.component';
 import { CompraInfoComponent } from './components/compra-info/compra-info.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -33,7 +32,6 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     EventoViewComponent,
     PerfilComponent,
     PublicacionViewComponent,
-    DashboardComponent,
     HistorialComprasComponent,
     CompraInfoComponent,
   ],

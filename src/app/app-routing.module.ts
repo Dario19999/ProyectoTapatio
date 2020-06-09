@@ -8,7 +8,6 @@ import { NosotrosComponent } from './components/nosotros/nosotros.component';
 import { EventoViewComponent } from './components/evento-view/evento-view.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PublicacionViewComponent } from './components/publicacion-view/publicacion-view.component';
-import { DashboardComponent } from './components/admin-components/dashboard/dashboard.component';
 import { HistorialComprasComponent } from './components/historial-compras/historial-compras.component';
 import { CompraInfoComponent } from './components/compra-info/compra-info.component';
 
@@ -21,7 +20,6 @@ const routes: Routes = [
   { path: 'evento', component: EventoViewComponent },
   { path: 'perfil', component: PerfilComponent },
   { path: 'publicacion', component: PublicacionViewComponent },
-  { path: 'admin', component: DashboardComponent },
   { path: 'historial', component: HistorialComprasComponent },
   { path: 'compra', component: CompraInfoComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
