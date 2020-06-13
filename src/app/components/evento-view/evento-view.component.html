@@ -7,27 +7,27 @@
             <owl-carousel-o [options]="customOptions">
                 <ng-template carouselSlide>
                     <div class="slide">
-                        <img src="https://i.picsum.photos/id/905/400/300.jpg">
+                        <img src="assets/img/eventos/img-e1.jpg" height="350px" class="p-1">
                     </div>
                 </ng-template>
                 <ng-template carouselSlide>
                     <div class="slide">
-                        <img src="https://i.picsum.photos/id/507/400/300.jpg">
+                        <img src="assets/img/eventos/img-e2.jpg" height="350px" class="p-1">
                     </div>
                 </ng-template>
                 <ng-template carouselSlide>
                     <div class="slide">
-                        <img src="https://i.picsum.photos/id/609/400/300.jpg">
+                        <img src="assets/img/eventos/img-e3.jpg" height="350px" class="p-1">
                     </div>
                 </ng-template>
                 <ng-template carouselSlide>
                     <div class="slide">
-                        <img src="https://i.picsum.photos/id/995/400/300.jpg">
+                        <img src="assets/img/eventos/img-e4.jpg" height="350px" class="p-1">
                     </div>
                 </ng-template>
                 <ng-template carouselSlide>
                     <div class="slide">
-                        <img src="https://i.picsum.photos/id/1054/400/300.jpg">
+                        <img src="assets/img/eventos/img-e5.jpg" height="350px" class="p-1">
                     </div>
                 </ng-template>
             </owl-carousel-o>
@@ -38,43 +38,56 @@
             </div>
         </div>
         <div class="card-footer">
-            <p class="card-text"><small class="text-muted">20/04/2020</small></p>
+            <p class="card-text"><small class="text-muted">20/04/2020 - 22/04/2020</small></p>
         </div>
     </div>
 
     <div class="card mb-3 border-success">
         <div class="card-header border-success">
-            <h4>Boletos</h4>
+            <h4>Boleto General</h4>
         </div>
         <div class="card-body">
-            <div class="container-fluid">
-                <div class="row h-100">
-                    <div class="col-md-4">
-                        <h5>Cantidad Seleccionada:</h5>
-                        <h1>0</h1>
-                    </div>
-                    <div class="col-md-4">
-                        <h5>En inventario:</h5>
-                        <h1>0</h1>
-                    </div>
-                    <div class="col-md-4 my-auto">
-                        <form>
-                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                              <option selected>Selecciona la Cantidad de Boletos</option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                           </select>
-                            <div class="text-center mt-3">
-                                <button type="submit" class="btn btn-outline-success">Comprar Boletos</button>
-                            </div>
-                        </form>
-                    </div>
+            <div class="row h-100">
+                <div class="col-md-7">
+                    <h5>Descripción</h5>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis tenetur, numquam delectus vel magnam dignissimos recusandae! Suscipit optio cum autem, nulla iure in, perferendis repudiandae, iusto mollitia quam alias ullam?</p>
+                </div>
+                <div class="col-md-2">
+                    <h5>Precio</h5>
+                    <p>$400</p>
+                </div>
+                <div class="col-md-3 my-auto">
+                    <input type="number" min="0" step="1" value="0" class="form-control w-50 mx-auto">
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="card mb-3 border-success">
+        <div class="card-header border-success">
+            <h4>Boleto VIP</h4>
+        </div>
+        <div class="card-body">
+            <div class="row h-100">
+                <div class="col-md-7">
+                    <h5>Descripción</h5>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis tenetur, numquam delectus vel magnam dignissimos recusandae! Suscipit optio cum autem, nulla iure in, perferendis repudiandae, iusto mollitia quam alias ullam?</p>
+                </div>
+                <div class="col-md-2">
+                    <h5>Precio</h5>
+                    <p>$400mil</p>
+                </div>
+                <div class="col-md-3 my-auto">
+                    <input type="number" min="0" step="1" value="0" class="form-control w-50 mx-auto">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-3">
+        <button type="submit" class="btn btn-outline-success">Agregar al Carrito</button>
+    </div>
 </div>
+<br>
 <br>
 <br>
 <br>
