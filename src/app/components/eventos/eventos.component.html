@@ -1,58 +1,98 @@
 <div class="container-fluid p-2 m-0 form-group bg-blue animated fadeIn fast">
-    <form class="form-inline">
+    <form class="m-1 p-0">
         <div class="form-row mx-auto">
-            <div class="col-md-6">
-                <select name="" class="form-control">
-                  <option selected>Tipo</option>
-                </select>
+            <div class="col-md-3 p-2 text-center mx-auto">
+                <label>Tipo:</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="tipo1" value="F" name="tipo">
+                        <label for="tipo1" class="form-check-label"> Fiesta</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="tipo2" value="E" name="tipo">
+                        <label for="tipo2" class="form-check-label"> Evento</label>
+                    </div>
+                </div>
             </div>
 
-            <div class="col-md-3">
-                <input type="text" class="form-control" style="max-width: 60px;" placeholder="Min.">
-            </div>
-            <div class="col-md-3">
-                <input type="text" class="form-control ml-2" style="max-width: 60px;" placeholder="Max.">
+            <div class="col-md-3 p-2 text-center mx-auto">
+                <label>Rango de Precio:</label>
+                <div class="input-group w-75 mx-auto justify-content-center align-items-center">
+                    <div>
+                        <input type="text " class="form-control m-1" style="max-width: 70px; " placeholder="Min.">
+                    </div>
+                    <div>
+                        <input type="text " class="form-control m-1" style="max-width: 70px; " placeholder="Max.">
+                    </div>
+                </div>
             </div>
         </div>
-
     </form>
 </div>
-<div class="container-fluid animated fadeIn fast">
-    <div class="card-deck m-4">
-        <div class="card" style="height: 500px;">
-            <img class="card-img-top" src="/assets/img/eventos/img-e1.jpg" width="450px" height="300px" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Titulo</h5>
-                <br>
-                <hr>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-            <div class="p-3">
-                <button (click)="verEvento()" class="btn btn-block btn-outline-success">Ver m&aacute;s</button>
-            </div>
-        </div>
-        <div class="card" style="height: 500px;">
-            <img class=" card-img-top " src="/assets/img/eventos/img-e2.jpg " width="450px " height="300px " alt="Card image cap ">
-            <div class="card-body ">
-                <h5 class="card-title ">Titulo</h5>
-                <br>
-                <hr>
-                <p class="card-text "><small class="text-muted ">Last updated 3 mins ago</small></p>
-            </div>
-            <div class="p-3">
-                <button (click)="verEvento()" class="btn btn-block btn-outline-success">Ver m&aacute;s</button>
+<div class="container-fluid animated fadeIn fast ">
+    <div class="row row-cols-1 row-cols-md-3 m-4">
+        <div class="col-md-4">
+            <div class="card ">
+                <img class="card-img-top " src="/assets/img/eventos/img-e1.jpg " width="450px " height="300px " alt="Card image cap ">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h5>Titulo</h5>
+                    </div>
+                    <hr>
+                    <div>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                    <hr>
+                    <div>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+                <div class="card-footer p-3">
+                    <button (click)="verEvento() " class="btn btn-block btn-outline-success ">Ver m&aacute;s</button>
+                </div>
             </div>
         </div>
-        <div class="card" style="height: 500px;">
-            <img class="card-img-top " src="/assets/img/eventos/img-e3.jpg " width="450px " height="300px " alt="Card image cap ">
-            <div class="card-body ">
-                <h5 class="card-title ">Titulo</h5>
-                <br>
-                <hr>
-                <p class="card-text "><small class="text-muted ">Last updated 3 mins ago</small></p>
+        <div class="col-md-4">
+            <div class="card ">
+                <img class=" card-img-top " src="/assets/img/eventos/img-e2.jpg " width="450px " height="300px " alt="Card image cap ">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h5>Titulo</h5>
+                    </div>
+                    <hr>
+                    <div>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                    <hr>
+                    <div>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+                <div class="card-footer p-3">
+                    <button (click)="verEvento() " class="btn btn-block btn-outline-success ">Ver m&aacute;s</button>
+                </div>
             </div>
-            <div class="p-3">
-                <button (click)="verEvento()" class="btn btn-block btn-outline-success">Ver m&aacute;s</button>
+        </div>
+        <div class="col-md-4">
+            <div class="card ">
+                <img class="card-img-top " src="/assets/img/eventos/img-e3.jpg " width="450px " height="300px " alt="Card image cap ">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h5>Titulo</h5>
+                    </div>
+                    <hr>
+                    <div>
+                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                    <hr>
+                    <div>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+                <div class="card-footer p-3">
+                    <button (click)="verEvento() " class="btn btn-block btn-outline-success ">Ver m&aacute;s</button>
+                </div>
             </div>
         </div>
     </div>
