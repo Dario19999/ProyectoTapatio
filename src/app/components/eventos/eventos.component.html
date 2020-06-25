@@ -32,58 +32,16 @@
 </div>
 <div class="container-fluid animated fadeIn fast ">
     <div class="row row-cols-1 row-cols-md-3 m-4">
-        <div class="col-md-4">
+        <div class="col-md-4" *ngFor="let evento of eventos">
             <div class="card ">
                 <img class="card-img-top " src="/assets/img/eventos/img-e1.jpg " width="450px " height="300px " alt="Card image cap ">
                 <div class="card-body">
                     <div class="text-center">
-                        <h5>Titulo</h5>
+                        <h5> {{ evento.nombre_evento }} </h5>
                     </div>
                     <hr>
                     <div>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <hr>
-                    <div>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <div class="card-footer p-3">
-                    <button (click)="verEvento() " class="btn btn-block btn-outline-success ">Ver m&aacute;s</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card ">
-                <img class=" card-img-top " src="/assets/img/eventos/img-e2.jpg " width="450px " height="300px " alt="Card image cap ">
-                <div class="card-body">
-                    <div class="text-center">
-                        <h5>Titulo</h5>
-                    </div>
-                    <hr>
-                    <div>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    </div>
-                    <hr>
-                    <div>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <div class="card-footer p-3">
-                    <button (click)="verEvento() " class="btn btn-block btn-outline-success ">Ver m&aacute;s</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card ">
-                <img class="card-img-top " src="/assets/img/eventos/img-e3.jpg " width="450px " height="300px " alt="Card image cap ">
-                <div class="card-body">
-                    <div class="text-center">
-                        <h5>Titulo</h5>
-                    </div>
-                    <hr>
-                    <div>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p class="card-text"> {{ evento.descripcion_evento }} </p>
                     </div>
                     <hr>
                     <div>

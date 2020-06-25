@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PublicacionesService } from '../../services/publicaciones.service';
+
 
 @Component({
   selector: 'app-publicaciones',
@@ -7,9 +9,25 @@ import { Router } from '@angular/router';
 })
 export class PublicacionesComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  publicaciones = null;
+
+  publicacion = {
+    id_publicacion:null,
+    titulo_pub:null,
+    articulo_pub:null,
+    creacion_pub:null
+  }
+
+  constructor(private router:Router,
+              private publicacionesService:PublicacionesService
+              ) { }
 
   ngOnInit() {
+    this.getPublicaciones();
+  }
+
+  getPublicaciones(){
+    this.publicacionesService.getPublicaciones().subscribe( resultado => this.publicaciones = resultado);
   }
 
   verPublicacion(){

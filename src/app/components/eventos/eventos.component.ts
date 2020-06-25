@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EventosService } from '../../services/eventos.service';
 
 
 @Component({
@@ -8,9 +9,24 @@ import { Router } from '@angular/router';
 })
 export class EventosComponent implements OnInit {
 
-  constructor( private router:Router) { }
+  eventos = null;
+
+  evento = {
+    id_evento:null,
+    nombre_evento:null,
+    descripcion_evento:null
+  }
+
+  constructor( private router:Router,
+               private eventosService:EventosService
+              ) { }
 
   ngOnInit() {
+    this.getEventos();
+  }
+
+  getEventos(){
+    this.eventosService.getEventos().subscribe( resultado => this.eventos = resultado );
   }
 
   verEvento(){

@@ -43,66 +43,25 @@
         <hr>
     </div>
     <owl-carousel-o [options]="customOptions">
-        <ng-template carouselSlide>
+        <ng-template carouselSlide *ngFor="let evento of eventos">
             <div class="slide">
-                <div class="card m-2" style="height: 500px;">
-                    <img class=" card-img-top " src="/assets/img/eventos/img-e1.jpg " width="300px " height="250px " alt="Card image cap ">
-                    <div class="card-body ">
-                        <h5 class="card-title ">Titulo</h5>
-                        <br>
+                <div class="card m-4">
+                    <img class="card-img-top " src="/assets/img/eventos/img-e1.jpg " width="450px " height="300px " alt="Card image cap ">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5> {{ evento.nombre_evento }} </h5>
+                        </div>
                         <hr>
-                        <p class="card-text "><small class="text-muted ">Last updated 3 mins ago</small></p>
-                    </div>
-                    <div class="p-3">
-                        <button (click)="verEvento()" class="btn btn-block btn-outline-success">Ver m&aacute;s</button>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-        <ng-template carouselSlide>
-            <div class="slide">
-                <div class="card m-2" style="height: 500px;">
-                    <img class=" card-img-top " src="/assets/img/eventos/img-e2.jpg " width="300px " height="250px " alt="Card image cap ">
-                    <div class="card-body ">
-                        <h5 class="card-title ">Titulo</h5>
-                        <br>
+                        <div>
+                            <p class="card-text"> {{ evento.descripcion_evento }} </p>
+                        </div>
                         <hr>
-                        <p class="card-text "><small class="text-muted ">Last updated 3 mins ago</small></p>
+                        <div>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
                     </div>
-                    <div class="p-3">
-                        <button (click)="verEvento()" class="btn btn-block btn-outline-success">Ver m&aacute;s</button>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-        <ng-template carouselSlide>
-            <div class="slide">
-                <div class="card m-2" style="height: 500px;">
-                    <img class=" card-img-top " src="/assets/img/eventos/img-e3.jpg " width="300px " height="250px " alt="Card image cap ">
-                    <div class="card-body ">
-                        <h5 class="card-title ">Titulo</h5>
-                        <br>
-                        <hr>
-                        <p class="card-text "><small class="text-muted ">Last updated 3 mins ago</small></p>
-                    </div>
-                    <div class="p-3">
-                        <button (click)="verEvento()" class="btn btn-block btn-outline-success">Ver m&aacute;s</button>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-        <ng-template carouselSlide>
-            <div class="slide">
-                <div class="card m-2" style="height: 500px;">
-                    <img class=" card-img-top " src="/assets/img/eventos/img-e3.jpg " width="300px " height="250px " alt="Card image cap ">
-                    <div class="card-body ">
-                        <h5 class="card-title ">Titulo</h5>
-                        <br>
-                        <hr>
-                        <p class="card-text "><small class="text-muted ">Last updated 3 mins ago</small></p>
-                    </div>
-                    <div class="p-3">
-                        <button (click)="verEvento()" class="btn btn-block btn-outline-success">Ver m&aacute;s</button>
+                    <div class="card-footer p-3">
+                        <button (click)="verEvento() " class="btn btn-block btn-outline-success ">Ver m&aacute;s</button>
                     </div>
                 </div>
             </div>
@@ -116,82 +75,25 @@
         <hr>
     </div>
     <owl-carousel-o [options]="customOptions">
-        <ng-template carouselSlide>
+        <ng-template carouselSlide *ngFor="let pub of publicaciones">
             <div class="slide">
-                <div class="card m-2" style="height: 550px;">
-                    <img class=" card-img-top " src="/assets/img/publicaciones/img-p2.jpg " width="300px " height="250px " alt="Card image cap ">
-                    <div class="card-body ">
-                        <h5 class="card-title ">Titulo</h5>
-                        <br>
-                        <hr>
-                        <div style="height: 80px; ">
-                            <p class="card-text ">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <div class="card m-4">
+                    <img class="card-img-top" src="/assets/img/publicaciones/img-p1.jpg" width="450px" height="300px" alt="Card image cap">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5> {{ pub.titulo_pub }} </h5>
                         </div>
                         <hr>
-                        <p class="card-text "><small class="text-muted ">Last updated 3 mins ago</small></p>
-                    </div>
-                    <div class="p-3">
-                        <button (click)="verPublicacion()" class="btn btn-block btn-outline-success">Ver m&aacute;s</button>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-        <ng-template carouselSlide>
-            <div class="slide">
-                <div class="card m-2" style="height: 550px;">
-                    <img class=" card-img-top " src="/assets/img/publicaciones/img-p2.jpg " width="300px " height="250px " alt="Card image cap ">
-                    <div class="card-body ">
-                        <h5 class="card-title ">Titulo</h5>
-                        <br>
-                        <hr>
-                        <div style="height: 80px; ">
-                            <p class="card-text ">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <div>
+                            <p class="card-text"> {{ pub.articulo_pub }} </p>
                         </div>
                         <hr>
-                        <p class="card-text "><small class="text-muted ">Last updated 3 mins ago</small></p>
-                    </div>
-                    <div class="p-3">
-                        <button (click)="verPublicacion()" class="btn btn-block btn-outline-success">Ver m&aacute;s</button>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-        <ng-template carouselSlide>
-            <div class="slide">
-                <div class="card m-2" style="height: 550px;">
-                    <img class=" card-img-top " src="/assets/img/publicaciones/img-p2.jpg " width="300px " height="250px " alt="Card image cap ">
-                    <div class="card-body ">
-                        <h5 class="card-title ">Titulo</h5>
-                        <br>
-                        <hr>
-                        <div style="height: 80px; ">
-                            <p class="card-text ">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <div>
+                            <p class="card-text"><small class="text-muted"> {{ pub.creacion_pub | date:' dd/mm/yyyy, h:mm ' }} </small></p>
                         </div>
-                        <hr>
-                        <p class="card-text "><small class="text-muted ">Last updated 3 mins ago</small></p>
                     </div>
-                    <div class="p-3">
-                        <button (click)="verPublicacion()" class="btn btn-block btn-outline-success">Ver m&aacute;s</button>
-                    </div>
-                </div>
-            </div>
-        </ng-template>
-        <ng-template carouselSlide>
-            <div class="slide">
-                <div class="card m-2" style="height: 550px;">
-                    <img class=" card-img-top " src="/assets/img/publicaciones/img-p2.jpg " width="300px " height="250px " alt="Card image cap ">
-                    <div class="card-body ">
-                        <h5 class="card-title ">Titulo</h5>
-                        <br>
-                        <hr>
-                        <div style="height: 80px; ">
-                            <p class="card-text ">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                        <hr>
-                        <p class="card-text "><small class="text-muted ">Last updated 3 mins ago</small></p>
-                    </div>
-                    <div class="p-3">
-                        <button (click)="verPublicacion()" class="btn btn-block btn-outline-success">Ver m&aacute;s</button>
+                    <div class="card-footer p-3">
+                        <button (click)="verPublicacion()" class="btn btn-block btn-outline-success">Ver más</button>
                     </div>
                 </div>
             </div>
