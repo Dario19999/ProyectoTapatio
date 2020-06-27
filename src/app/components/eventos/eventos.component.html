@@ -32,7 +32,7 @@
 </div>
 <div class="container-fluid animated fadeIn fast ">
     <div class="row row-cols-1 row-cols-md-3 m-4">
-        <div class="col-md-4" *ngFor="let evento of eventos">
+        <div class="col-md-4" *ngFor="let evento of eventos; let i = index">
             <div class="card ">
                 <img class="card-img-top " src="/assets/img/eventos/img-e1.jpg " width="450px " height="300px " alt="Card image cap ">
                 <div class="card-body" style="height: 270px;">
@@ -46,7 +46,7 @@
                     <hr>
                 </div>
                 <div class="card-footer p-3">
-                    <button (click)="verEvento() " class="btn btn-block btn-outline-success ">Ver m&aacute;s</button>
+                    <button (click)="verEvento( evento.id_evento ) " class="btn btn-block btn-outline-success ">Ver m&aacute;s</button>
                 </div>
             </div>
         </div>

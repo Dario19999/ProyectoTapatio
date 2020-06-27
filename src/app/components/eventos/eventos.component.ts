@@ -28,8 +28,8 @@ export class EventosComponent implements OnInit {
     this.eventosService.getEventos().subscribe( resultado => this.eventos = resultado );
   }
 
-  verEvento(){
-    this.router.navigate(['evento'])
+  verEvento( id_evento:number ){
+    this.router.navigate(['evento', id_evento]);
   }
 
 }

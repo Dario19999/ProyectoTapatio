@@ -30,7 +30,8 @@ export class PublicacionesComponent implements OnInit {
     this.publicacionesService.getPublicaciones().subscribe( resultado => this.publicaciones = resultado);
   }
 
-  verPublicacion(){
-    this.router.navigate(['publicacion'])
+  verPublicacion( id_publicacion:number ){
+    this.router.navigate(['publicacion', id_publicacion])
   }
+
 }

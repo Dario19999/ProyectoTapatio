@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ActivatedRoute } from '@angular/router';
+import { PublicacionesService } from '../../services/publicaciones.service';
 
 @Component({
   selector: 'app-publicacion-view',
@@ -32,9 +34,16 @@ export class PublicacionViewComponent implements OnInit {
     nav: true
   }
 
-  constructor() { }
+  publicacion:any = {};
 
-  ngOnInit(): void {
+  constructor( private activatdRoute:ActivatedRoute,
+               private publicacionesService:PublicacionesService
+             ) { }
+
+  ngOnInit(){
+    this.activatdRoute.params.subscribe( params => {
+      this.publicacionesService.getPublicacion(params['id']).subscribe( respuesta => this.publicacion = respuesta[0] )
+    })
   }
 
 }

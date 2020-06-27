@@ -1,7 +1,7 @@
 <div class="container-fluid animated fadeIn fast mt-3">
     <div class="card mb-3 border-primary">
         <div class="card-header border-primary">
-            <h4>Nombre de Evento</h4>
+            <h4> {{ evento.nombre_evento }} </h4>
         </div>
         <div class="card-body">
             <owl-carousel-o [options]="customOptions">
@@ -34,7 +34,7 @@
             <hr>
             <div class="container-fluid">
                 <h4>Descrpición</h4>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur excepturi facilis voluptatum tempore quam deleniti molestias vero atque? Magni culpa commodi ipsam soluta et sit quod blanditiis fugit nostrum similique.</p>
+                <p>{{ evento.descripcion_evento }}</p>
             </div>
         </div>
         <div class="card-footer">

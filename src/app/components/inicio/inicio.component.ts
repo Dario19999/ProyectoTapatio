@@ -70,10 +70,11 @@ export class InicioComponent implements OnInit {
     this.publicacionesService.getPublicaciones().subscribe( resultado => this.publicaciones = resultado);
   }
 
-  verEvento(){
-    this.router.navigate(['evento'])
+  verEvento( id_evento:number ){
+    this.router.navigate(['evento', id_evento]);
   }
-  verPublicacion(){
-    this.router.navigate(['publicacion'])
+
+  verPublicacion( id_piblicacion:number ){
+    this.router.navigate(['publicacion', id_piblicacion])
   }
 }

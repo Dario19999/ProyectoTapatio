@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { EventosService } from '../../services/eventos.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-evento-view',
@@ -30,9 +32,17 @@ export class EventoViewComponent implements OnInit {
     },
     nav: true
   }
-  constructor() { }
 
-  ngOnInit(): void {
+  evento:any = {};
+
+  constructor( private activatedRoute:ActivatedRoute,
+               private eventosService:EventosService
+              ) { }
+
+  ngOnInit(){
+    this.activatedRoute.params.subscribe( params => {
+      this.eventosService.getEvento(params['id']).subscribe( resultado => this.evento = resultado[0])
+    })
   }
 
 }

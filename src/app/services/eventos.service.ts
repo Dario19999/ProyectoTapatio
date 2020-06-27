@@ -13,6 +13,10 @@ export class EventosService {
   constructor(private http:HttpClient) { }
 
   getEventos(){
-    return this.http.get(`${this.url}getEventos.php`).pipe(retry(3));
+    return this.http.get(`${this.url}getEventos.php`).pipe(retry(3))
+  }
+
+  getEvento( id_evento:number ){
+    return this.http.get(`${this.url}getEvento.php?id_evento=${id_evento}`).pipe(retry(3))
   }
 }

@@ -13,11 +13,11 @@
                     </div>
                     <hr>
                     <div>
-                        <p class="card-text"><small class="text-muted"> {{ pub.creacion_pub | date:' dd/mm/yyyy h:mm a ' }} </small></p>
+                        <p class="card-text"><small class="text-muted"> {{ pub.creacion_pub | date:' dd/mm/yyyy h:mm a' }} </small></p>
                     </div>
                 </div>
                 <div class="card-footer p-3">
-                    <button (click)="verPublicacion()" class="btn btn-block btn-outline-success">Ver más</button>
+                    <button (click)="verPublicacion( pub.id_publicacion )" class="btn btn-block btn-outline-success">Ver más</button>
                 </div>
             </div>
         </div>
