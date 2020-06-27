@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventosService } from '../../services/eventos.service';
 
-
 @Component({
   selector: 'app-eventos',
   templateUrl: './eventos.component.html'

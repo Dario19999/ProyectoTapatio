@@ -17,7 +17,8 @@ export class InicioComponent implements OnInit {
     pullDrag: false,
     dots: true,
     navSpeed: 700,
-    navText: ['Previous', 'Next'],
+    navText: ['Anterior', 'Siguiente'],
+    nav: true,
     responsive: {
       0: {
         items: 1
@@ -31,8 +32,7 @@ export class InicioComponent implements OnInit {
       940: {
         items: 3
       }
-    },
-    nav: true
+    }
   }
 
   eventos = null;

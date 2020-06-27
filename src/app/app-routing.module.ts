@@ -10,6 +10,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { PublicacionViewComponent } from './components/publicacion-view/publicacion-view.component';
 import { HistorialComprasComponent } from './components/historial-compras/historial-compras.component';
 import { CompraInfoComponent } from './components/compra-info/compra-info.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
+import { CompraComponent } from './components/compra/compra.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -21,7 +23,9 @@ const routes: Routes = [
   { path: 'perfil', component: PerfilComponent },
   { path: 'publicacion', component: PublicacionViewComponent },
   { path: 'historial', component: HistorialComprasComponent },
-  { path: 'compra', component: CompraInfoComponent },
+  { path: 'info-compra', component: CompraInfoComponent },
+  { path: 'carrito', component: CarritoComponent },
+  { path: 'compra', component: CompraComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];
 

@@ -1,0 +1,54 @@
+<div class="container-fluid animated fadeIn fast mt-3 p-4">
+    <div class="card border-success">
+        <div class="card-body">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row h-100">
+                        <div class="col-md-6 text-center my-auto">
+                            <h5> Nombre Del Boleto </h5>
+                            <h5><small> Nombre del Evento </small></h5>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <label> Cantidad: </label>
+                            <h5> 1 </h5>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <label> Precio: </label>
+                            <h5> {{ 400 | currency:'MXN':'symbol' }} </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="row h-100">
+                        <div class="col-md-6 text-center my-auto">
+                            <h5> Nombre Del Boleto </h5>
+                            <h5><small> Nombre del Evento </small></h5>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <label> Cantidad: </label>
+                            <h5> 1 </h5>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <label> Precio: </label>
+                            <h5> {{ 400 | currency:'MXN':'symbol' }} </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row h-100">
+                <div class="col-md-12 text-center">
+                    <h5> Total: </h5>
+                    <h5> {{ 800 | currency:'MXN':'symbol' }} </h5>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <button class="btn btn-outline-success d-block mx-auto" (click)="irACompra()"> Comprar </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

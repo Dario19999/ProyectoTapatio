@@ -13,7 +13,7 @@ export class HistorialComprasComponent implements OnInit {
   }
 
   verCompra(){
-    this.router.navigate(['compra'])
+    this.router.navigate(['info-compra'])
   }
 
 }

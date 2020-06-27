@@ -23,6 +23,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 import { EventosService } from './services/eventos.service';
 import { PublicacionesService } from './services/publicaciones.service';
+import { CarritoComponent } from './components/carrito/carrito.component';
+import { CompraComponent } from './components/compra/compra.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { PublicacionesService } from './services/publicaciones.service';
     PublicacionViewComponent,
     HistorialComprasComponent,
     CompraInfoComponent,
+    CarritoComponent,
+    CompraComponent,
   ],
   imports: [
     BrowserModule,
