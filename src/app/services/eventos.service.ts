@@ -7,7 +7,7 @@ import { retry } from 'rxjs/operators';
 })
 export class EventosService {
 
-  // url = "http://proyectotapatio.com/PT-API-P/eventos/";
+  // url = "https://proyectotapatio.com/PT-API-P/eventos/";
   url = "http://localhost:8080/PT-API/eventos/";
 
   constructor(private http:HttpClient) { }
@@ -19,4 +19,5 @@ export class EventosService {
   getEvento( id_evento:number ){
     return this.http.get(`${this.url}getEvento.php?id_evento=${id_evento}`).pipe(retry(3))
   }
+
 }
