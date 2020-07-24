@@ -7,17 +7,31 @@ import { retry } from 'rxjs/operators';
 })
 export class EventosService {
 
-  // url = "https://proyectotapatio.com/PT-API-P/eventos/";
-  url = "http://localhost:8080/PT-API/eventos/";
+  url = "http://proyectotapatio.com/PT-API-P/eventos/";
+  // url = "http://localhost:8080/PT-API/eventos/";
 
-  constructor(private http:HttpClient) { }
+  eventos = null;
 
-  getEventos(){
-    return this.http.get(`${this.url}getEventos.php`).pipe(retry(3))
+  constructor(private http:HttpClient ) { }
+
+  getEventos( tipo:number=-1 ){
+    return this.http.get(`${this.url}getEventos.php?tipo=${tipo}`).pipe(retry(3));
   }
 
-  getEvento( id_evento:number ){
-    return this.http.get(`${this.url}getEvento.php?id_evento=${id_evento}`).pipe(retry(3))
+  getEvento( id:number ){
+    return this.http.get(`${this.url}getEvento.php?id_evento=${id}`).pipe(retry(3))
+  }
+
+  getImgs( id:number ){
+    return this.http.get(`${this.url}getImagenes.php?id_evento=${id}`).pipe(retry(3))
+  }
+
+  getCarousel(){
+    return this.http.get(`${this.url}getCarousel.php`).pipe(retry(3))
+  }
+
+  buscarEvento( nombre:string ){
+    return this.http.get(`${this.url}buscarEvento.php?nombre_evento=${nombre}`).pipe(retry(3))
   }
 
 }

@@ -1,60 +1,52 @@
 <div class="container-fluid animated fadeIn fast mt-3">
     <div class="card mb-3 border-primary">
-        <div class="card-header border-primary">
-            <h4> {{ evento.nombre_evento }} </h4>
+        <div class="card-header border-primary text-center">
+            <h4> {{ evento.nombre_evento}} </h4>
         </div>
-        <div class="card-body">
+        <div class="pt-4 text-center mb-3">
+            <img [src]="'admin/assets/img/eventos/'+evento.evento_img" alt="img_principal" class="figure-img img-fluid rounded mx-auto" width="950" height="650">
+        </div>
+        <div class="card-body text-center">
+            <h4>Imágenes Generales.</h4>
             <owl-carousel-o [options]="customOptions">
-                <ng-template carouselSlide>
+                <ng-template carouselSlide *ngFor="let img of imgs">
                     <div class="slide">
-                        <img src="assets/img/eventos/img-e1.jpg" height="350px" class="p-1">
-                    </div>
-                </ng-template>
-                <ng-template carouselSlide>
-                    <div class="slide">
-                        <img src="assets/img/eventos/img-e2.jpg" height="350px" class="p-1">
-                    </div>
-                </ng-template>
-                <ng-template carouselSlide>
-                    <div class="slide">
-                        <img src="assets/img/eventos/img-e3.jpg" height="350px" class="p-1">
-                    </div>
-                </ng-template>
-                <ng-template carouselSlide>
-                    <div class="slide">
-                        <img src="assets/img/eventos/img-e4.jpg" height="350px" class="p-1">
-                    </div>
-                </ng-template>
-                <ng-template carouselSlide>
-                    <div class="slide">
-                        <img src="assets/img/eventos/img-e5.jpg" height="350px" class="p-1">
+                        <img [src]="'admin/assets/img/eventos/'+img.ruta_imagen_eve" alt="imgs" width="300" height="300" class="p-1 figure-img rounded">
                     </div>
                 </ng-template>
             </owl-carousel-o>
             <hr>
-            <div class="container-fluid">
-                <h4>Descrpición</h4>
-                <p>{{ evento.descripcion_evento }}</p>
+            <div class="container-fluid text-left">
+                <h4>Descripción.</h4>
+                <p> {{evento.descripcion_evento}} </p>
+            </div>
+            <hr>
+            <div class="container-fluid text-left">
+                <h4>Enlace.</h4>
+                <p> {{evento.enlace_evento}} </p>
             </div>
         </div>
         <div class="card-footer">
-            <p class="card-text"><small class="text-muted">20/04/2020 - 22/04/2020</small></p>
+            <p class="card-text">
+                <small class="text-muted"> Inicio: {{ evento.dia_inicio_evento | date:'dd-MM-yyyy' }} a las {{evento.hora_inicio_evento}} </small><br>
+                <small class="text-muted"> Cierre: {{ evento.dia_conclusion_evento | date:'dd-MM-yyyy' }} a las {{evento.hora_conclusion_evento}}</small>
+            </p>
         </div>
     </div>
 
-    <div class="card mb-3 border-success">
+    <div class="card mb-3 border-success" *ngFor="let boleto of boletos">
         <div class="card-header border-success">
-            <h4>Boleto General</h4>
+            <h4> {{boleto.nom_bol}} </h4>
         </div>
         <div class="card-body">
             <div class="row h-100">
                 <div class="col-md-7">
                     <h5>Descripción</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis tenetur, numquam delectus vel magnam dignissimos recusandae! Suscipit optio cum autem, nulla iure in, perferendis repudiandae, iusto mollitia quam alias ullam?</p>
+                    <p> {{ boleto.descripcion_boleto }} </p>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 my-auto text-center">
                     <h5>Precio</h5>
-                    <p>$400</p>
+                    <p>${{boleto.precio_bol}}.00 </p>
                 </div>
                 <div class="col-md-3 my-auto">
                     <input type="number" min="0" step="1" value="0" class="form-control w-50 mx-auto">
@@ -66,29 +58,6 @@
         </div>
     </div>
 
-    <div class="card mb-3 border-success">
-        <div class="card-header border-success">
-            <h4>Boleto VIP</h4>
-        </div>
-        <div class="card-body">
-            <div class="row h-100">
-                <div class="col-md-7">
-                    <h5>Descripción</h5>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis tenetur, numquam delectus vel magnam dignissimos recusandae! Suscipit optio cum autem, nulla iure in, perferendis repudiandae, iusto mollitia quam alias ullam?</p>
-                </div>
-                <div class="col-md-2">
-                    <h5>Precio</h5>
-                    <p>$400mil</p>
-                </div>
-                <div class="col-md-3 my-auto">
-                    <input type="number" min="0" step="1" value="0" class="form-control w-50 mx-auto">
-                    <div class="text-center mt-3">
-                        <button type="submit" class="btn btn-outline-success">Agregar al Carrito</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <br>
 <br>

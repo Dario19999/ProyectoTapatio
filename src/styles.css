@@ -43,3 +43,20 @@
 img {
     object-fit: cover;
 }
+
+nav {
+    z-index: 999;
+}
+
+.modal {
+    z-index: 1000;
+}
+
+a {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    left: auto;
+    right: 0;
+}

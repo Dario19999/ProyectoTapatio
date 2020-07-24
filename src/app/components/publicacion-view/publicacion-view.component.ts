@@ -36,13 +36,16 @@ export class PublicacionViewComponent implements OnInit {
 
   publicacion:any = {};
 
+  imgs:any = null;
+
   constructor( private activatdRoute:ActivatedRoute,
                private publicacionesService:PublicacionesService
              ) { }
 
   ngOnInit(){
     this.activatdRoute.params.subscribe( params => {
-      this.publicacionesService.getPublicacion(params['id']).subscribe( respuesta => this.publicacion = respuesta[0] )
+      this.publicacionesService.getPublicacion(params['id']).subscribe( respuesta => this.publicacion = respuesta[0] );
+      this.publicacionesService.getImgs(params['id']).subscribe( respuesta => this.imgs = respuesta);
     })
   }
 

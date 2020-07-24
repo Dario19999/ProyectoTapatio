@@ -37,6 +37,8 @@ export class InicioComponent implements OnInit {
 
   eventos = null;
 
+  imgs = null;
+
   evento = {
     id_evento:null,
     nombre_evento:null,
@@ -44,6 +46,8 @@ export class InicioComponent implements OnInit {
   }
 
   publicaciones = null;
+
+  carousel = null;
 
   publicacion = {
     id_publicacion:null,
@@ -54,12 +58,18 @@ export class InicioComponent implements OnInit {
 
   constructor( private router:Router,
                private publicacionesService:PublicacionesService,
-               private eventosService:EventosService
+               private eventosService:EventosService,
               ) { }
 
   ngOnInit() {
     this.getEventos();
     this.getPublicaciones();
+    this.getCarousel();
+  }
+
+  getCarousel(){
+    this.eventosService.getCarousel().subscribe( resultado => this.carousel = resultado);
+    console.log(this.carousel);
   }
 
   getEventos(){

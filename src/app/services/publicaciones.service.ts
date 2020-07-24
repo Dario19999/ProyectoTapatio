@@ -7,8 +7,8 @@ import { retry } from 'rxjs/operators';
 })
 export class PublicacionesService {
 
-  // url = "https://proyectotapatio.com/PT-API-P/publicaciones/";
-  url = "http://localhost:8080/PT-API/publicaciones/";
+  url = "http://proyectotapatio.com/PT-API-P/publicaciones/";
+  // url = "http://localhost:8080/PT-API/publicaciones/";
 
   constructor(private http:HttpClient) { }
 
@@ -20,4 +20,11 @@ export class PublicacionesService {
     return this.http.get(`${this.url}getPublicacion.php?id_publicacion=${id_pub}`).pipe(retry(3))
   }
 
+  getImgs( id:number ){
+    return this.http.get(`${this.url}getImagenes.php?id_pub=${id}`).pipe(retry(3))
+  }
+
+  buscarPub( nombre:string ){
+    return this.http.get(`${this.url}buscarPublicacion.php?nombre_pub=${nombre}`).pipe(retry(3))
+  }
 }

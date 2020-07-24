@@ -1,52 +1,62 @@
-<div class="container-fluid p-2 m-0 form-group bg-blue animated fadeIn fast">
-    <form class="m-1 p-0">
-        <div class="form-row mx-auto">
-            <div class="col-md-3 p-2 text-center mx-auto">
+<div class="container-fluid p-2 m-0 bg-info animated fadeIn fast">
+    <form [formGroup]="formFiltros" (ngSubmit)="filtrar()">
+        <div class="form-row align-items-center justify-content-center">
+            <div class="col-md-3 p-2 text-center">
                 <label>Tipo:</label>
                 <div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="tipo1" value="F" name="tipo">
+                        <input class="form-check-input" type="radio" id="tipo1" value="0" formControlName="tipo">
                         <label for="tipo1" class="form-check-label"> Fiesta</label>
                     </div>
 
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" id="tipo2" value="E" name="tipo">
+                        <input class="form-check-input" type="radio" id="tipo2" value="1" formControlName="tipo">
                         <label for="tipo2" class="form-check-label"> Evento</label>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-3 p-2 text-center mx-auto">
+            <div class="col-md-3 p-2 text-center">
                 <label>Rango de Precio:</label>
                 <div class="input-group w-75 mx-auto justify-content-center align-items-center">
                     <div>
-                        <input type="text " class="form-control m-1" style="max-width: 70px; " placeholder="Min.">
+                        <input type="text" class="form-control m-1" style="max-width: 70px;" placeholder="Min." formControlName="precioMin">
                     </div>
                     <div>
-                        <input type="text " class="form-control m-1" style="max-width: 70px; " placeholder="Max.">
+                        <input type="text" class="form-control m-1" style="max-width: 70px;" placeholder="Max." formControlName="precioMax">
                     </div>
                 </div>
+            </div>
+
+            <div class="col-md-3 h-100 my-auto">
+                <button class="btn btn-primary mx-auto d-block" type="submit"> Filtrar </button>
             </div>
         </div>
     </form>
 </div>
-<div class="container-fluid animated fadeIn fast ">
+<div class="container-fluid animated fadeIn fast">
     <div class="row row-cols-1 row-cols-md-3 m-4">
         <div class="col-md-4" *ngFor="let evento of eventos; let i = index">
-            <div class="card ">
-                <img class="card-img-top " src="/assets/img/eventos/img-e1.jpg " width="450px " height="300px " alt="Card image cap ">
+            <div class="card">
+                <img class="card-img-top" [src]="'admin/assets/img/eventos/'+evento.evento_img" width="450px" height="300px" alt="Card image cap">
                 <div class="card-body" style="height: 270px;">
                     <div class="text-center">
                         <h5> {{ evento.nombre_evento }} </h5>
                     </div>
                     <hr>
                     <div>
+                        <h5>Descripción</h5>
                         <p class="card-text"> {{ (evento.descripcion_evento.length>150)? (evento.descripcion_evento | slice:0:150)+'...':(evento.descripcion_evento) }} </p>
                     </div>
                     <hr>
+                    <div>
+                        <h5>Fechas</h5>
+                        <small class="text-muted"> Inicio: {{ evento.dia_inicio_evento | date:'dd-MM-yyyy' }} a las {{evento.hora_inicio_evento}} </small><br>
+                        <small class="text-muted"> Cierre: {{ evento.dia_conclusion_evento | date:'dd-MM-yyyy' }} a las {{evento.hora_conclusion_evento}}</small>
+                    </div>
                 </div>
                 <div class="card-footer p-3">
-                    <button (click)="verEvento( evento.id_evento ) " class="btn btn-block btn-outline-success ">Ver m&aacute;s</button>
+                    <button (click)="verEvento( evento.id_evento )" class="btn btn-block btn-outline-success">Ver m&aacute;s</button>
                 </div>
             </div>
         </div>

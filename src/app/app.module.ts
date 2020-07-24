@@ -2,9 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { HttpClientModule } from '@angular/common/http';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { FacebookLoginProvider} from 'angularx-social-login';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -50,12 +53,26 @@ import { CompraComponent } from './components/compra/compra.component';
     CarouselModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    SocialLoginModule
   ],
   providers: [
     EventosService,
     PublicacionesService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('691078078359422'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    }
   ],
   bootstrap: [AppComponent]
 })
