@@ -16,4 +16,6 @@ export class CarritoComponent implements OnInit {
     this.router.navigate(['compra']);
   }
 
+
+
 }

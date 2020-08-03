@@ -101,3 +101,61 @@
         </div>
     </div>
 </div>
+<button #modalRegistro class="invisible" type="button" data-toggle="modal" data-target="#modalRegistro">xxx</button>
+
+<div class="modal fade" id="modalRegistro" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modalEventoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalRegistroLabel">Finalizar Registro</h5>
+                <button #cerrarModalRegistro type="button" class="close invisible" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+            </div>
+            <div class="modal-body">
+                <p>Para acceder a todas las funcionalidades de la página, por favor, termine su registro llenando el sigiente formulario</p>
+                <form [formGroup]="formRegistro" (ngSubmit)="guardarRegistro()">
+
+                    <div class="form-row mb-3">
+                        <div class="col-md-12">
+                            <label for="nombre">Correo: <small class="text-danger">*</small></label>
+                            <input type="text" class="form-control" placeholder="Ingrese su correo" formControlName="correo" [class.is-invalid]="validacionCorreo">
+                            <small *ngIf="validacionCorreo" class="form-text text-danger">Ingrese un correo válido.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row mb-3">
+                        <div class="col-md-6">
+                            <label for="tel">Teléfono: <small class="text-danger">*</small></label>
+                            <input class="form-control" type="tel" id="tel" placeholder="888 888 8888" maxlength="10" formControlName="celular" [class.is-invalid]="validacionTelefono || validacionNumero">
+                            <small *ngIf="validacionTelefono" class="form-text text-danger">Teléfono Obligatorio.</small>
+                            <small *ngIf="validacionNumero" class="form-text text-danger">Ingrese un teléfono válido.</small>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="telext">Teléfono Adicional: <small class="text-danger">*</small></label>
+                            <input class="form-control" type="tel" id="telext" placeholder="888 888 8888" maxlength="10" formControlName="celularExt" [class.is-invalid]="validacionTelefonoExtra || validacionNumeroExtra">
+                            <small *ngIf="validacionTelefonoExtra" class="form-text text-danger">Teléfono Adicional Obligatorio.</small>
+                            <small *ngIf="validacionNumeroExtra" class="form-text text-danger">Ingrese un teléfono válido.</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row mb-3">
+                        <div class="col-md-6">
+                            <label for="nacimiento">Fecha de Nacimiento: <small class="text-danger">*</small></label>
+                            <input type="date" class="form-control" id="nacimiento" placeholder="Ingrese la fecha de nacimiento del repartidor/a" formControlName="nacimiento" [class.is-invalid]="validacionNacimiento">
+                            <small *ngIf="validacionNacimiento" class="form-text text-danger">Fecha de Nacimiento Obligatoria.</small>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="input-group form-row mb-3">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-success" type="submit" [disabled]="formRegistro.invalid">Finalizar Registro</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

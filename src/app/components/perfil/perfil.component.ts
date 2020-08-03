@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocialUser } from "angularx-social-login";
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-perfil',
@@ -8,13 +9,17 @@ import { SocialUser } from "angularx-social-login";
 })
 export class PerfilComponent implements OnInit {
 
-  usuario:SocialUser;
+  usuarioFB:SocialUser;
+  usuario:any = {};
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,
+              private usuariosService:UsuariosService) { }
 
   ngOnInit() {
-    this.usuario = JSON.parse(localStorage.getItem("user"));
-    console.log(this.usuario);
+    this.usuarioFB = JSON.parse(localStorage.getItem("usuario"));
+    console.log(this.usuarioFB);
+
+    this.usuariosService.getUsuario(this.usuarioFB.id).subscribe( resultado => this.usuario = resultado[0]);
   }
 
   verHistorial(){
