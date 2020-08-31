@@ -23,13 +23,14 @@ import { PublicacionViewComponent } from './components/publicacion-view/publicac
 import { HistorialComprasComponent } from './components/historial-compras/historial-compras.component';
 import { CompraInfoComponent } from './components/compra-info/compra-info.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { CarritoComponent } from './components/carrito/carrito.component';
+import { CompraComponent } from './components/compra/compra.component';
 
 import { EventosService } from './services/eventos.service';
 import { PublicacionesService } from './services/publicaciones.service';
-import { CarritoComponent } from './components/carrito/carrito.component';
-import { CompraComponent } from './components/compra/compra.component';
-import { BoletosService } from '../../../ProyectoTapatioAdmin/src/app/services/boletos.service';
-import { UsuariosService } from '../../../ProyectoTapatioAdmin/src/app/services/usuarios.service';
+import { BoletosService } from './services/boletos.service';
+import { UsuariosService } from './services/usuarios.service';
+
 
 @NgModule({
   declarations: [
