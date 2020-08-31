@@ -7,8 +7,8 @@ import { retry } from 'rxjs/operators';
 })
 export class BoletosService {
 
-  // url = "https://proyectotapatio.com/PT-API-P/boletos/";
-  url = "http://localhost:8080/PT-API/boletos/";
+  url = "https://proyectotapatio.com/PT-API-P/boletos/";
+  // url = "http://localhost:8080/PT-API/boletos/";
 
   constructor(private http:HttpClient) { }
 
@@ -26,5 +26,9 @@ export class BoletosService {
 
   getPromosFechas( id_boleto:number ){
     return this.http.get(`${this.url}getPromosFechas.php?id_boleto=${id_boleto}`).pipe(retry(3))
+  }
+
+  aplicarPromoCodigo( codigo:string ){
+    return this.http.get(`${this.url}aplicarPromoCodigo.php?codigo=${codigo}`).pipe(retry(3))
   }
 }

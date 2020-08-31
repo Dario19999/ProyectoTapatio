@@ -8,8 +8,8 @@ import { serialize } from 'object-to-formdata';
 })
 export class UsuariosService {
 
-  // url = "https://proyectotapatio.com/PT-API-P/usuarios/";
-  url = "http://localhost:8080/PT-API/usuarios/";
+  url = "https://proyectotapatio.com/PT-API-P/usuarios/";
+  // url = "http://localhost:8080/PT-API/usuarios/";
 
   constructor(private http:HttpClient) { }
 

@@ -21,12 +21,6 @@ export class NavbarComponent implements OnInit {
   @ViewChild('modalRegistro',{ static: false }) modalRegistro;
   @ViewChild('cerrarModalRegistro',{ static: false }) cerrarModalRegistro;
 
-  usuario:any = {
-    id_fb:null,
-    nombre:null,
-    foto:null
-  }
-
   constructor(public router:Router,
               private authService:SocialAuthService,
               private usuariosService:UsuariosService,
@@ -37,32 +31,33 @@ export class NavbarComponent implements OnInit {
     this.formRegistroInit();
     this.authService.authState.subscribe((user) => {
       this.usuarioFB = user;
-      localStorage.setItem("usuario", JSON.stringify(this.usuarioFB));
-
-      this.usuariosService.registrarUsuario(this.usuarioFB).subscribe( datos => {
-        if(datos['resultado'] == "ERROR"){
-          console.log("ERROR");
-          return
-        }
-        else if( datos['resultado'] == "OK"){
-          this.cerrar.nativeElement.click();
-
-          let estado = null;
-          this.usuariosService.consultaTipoUsuario(this.usuarioFB.id).subscribe( resultado => {
-            estado = resultado;
-            if(estado[0].tipo_usuario == 0){
-              this.modalRegistro.nativeElement.click();
-            }
-            else if( estado[0].tipo_usuario == 1){
-              return
-            }
-          })
-        }
-      });
-
       this.loggedIn = (user != null);
-      this.formRegistro.addControl('id', this.fb.control(null));
-      this.formRegistro.get('id').setValue(this.usuarioFB.id);
+
+      localStorage.setItem("usuario", JSON.stringify(this.usuarioFB));
+      if(this.loggedIn){
+        this.usuariosService.registrarUsuario(this.usuarioFB).subscribe( datos => {
+          if(datos['resultado'] == "ERROR"){
+            console.log("ERROR");
+            return
+          }
+          else if( datos['resultado'] == "OK"){
+            this.cerrar.nativeElement.click();
+
+            let estado = null;
+            this.usuariosService.consultaTipoUsuario(this.usuarioFB.id).subscribe( resultado => {
+              estado = resultado;
+              if(estado[0].tipo_usuario == 0){
+                this.modalRegistro.nativeElement.click();
+              }
+              else if( estado[0].tipo_usuario == 1){
+                return
+              }
+            })
+          }
+        });
+        this.formRegistro.addControl('id', this.fb.control(null));
+        this.formRegistro.get('id').setValue(this.usuarioFB.id);
+      }
 
     });
   }
@@ -133,6 +128,7 @@ export class NavbarComponent implements OnInit {
       }
       else if(datos['resultado'] == "OK"){
         window.confirm("Registro completado con éxito.");
+        this.cerrarModalRegistro.nativeElement.click();
       }
     })
   }

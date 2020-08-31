@@ -28,6 +28,8 @@ import { EventosService } from './services/eventos.service';
 import { PublicacionesService } from './services/publicaciones.service';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { CompraComponent } from './components/compra/compra.component';
+import { BoletosService } from '../../../ProyectoTapatioAdmin/src/app/services/boletos.service';
+import { UsuariosService } from '../../../ProyectoTapatioAdmin/src/app/services/usuarios.service';
 
 @NgModule({
   declarations: [
@@ -60,6 +62,8 @@ import { CompraComponent } from './components/compra/compra.component';
   providers: [
     EventosService,
     PublicacionesService,
+    BoletosService,
+    UsuariosService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {
       provide: 'SocialAuthServiceConfig',
