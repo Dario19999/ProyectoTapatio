@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
@@ -71,7 +71,7 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-  get validacionCorreo(){
+  get validacionCorreoR(){
     return this.formRegistro.get('correo').invalid && this.formRegistro.get('correo').touched
   }
 
@@ -131,16 +131,5 @@ export class NavbarComponent implements OnInit {
         this.cerrarModalRegistro.nativeElement.click();
       }
     })
-  }
-
-  guardar( forma:NgForm){
-    console.log(forma);
-    if(forma.invalid){
-      Object.values(forma.controls).forEach( controls =>{
-        controls.markAllAsTouched();
-      });
-      return;
-    }
-    console.log(forma.value);
   }
 }

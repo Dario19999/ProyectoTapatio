@@ -56,48 +56,8 @@
                   <img class="float-left" src="/assets/img/facebook-icon.png" alt="facebook-icon" width="30px" height="30px">
                   Inicia sesion con Facebook
                 </button>
-                <hr>
-                <div class="container-fluid text-center">
-                    <h5>Repartidores</h5>
-                </div>
-                <form (ngSubmit)="guardar(formR)" #formR="ngForm">
-                    <div class="form-group">
-                        <label>Correo electr&oacute;nico</label>
-                        <input type="email" class="form-control" name="correoR" placeholder="Ej. alguien@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ngModel [class.is-invalid]="correoR.invalid && correoR.touched" #correoR="ngModel" required>
-                        <small *ngIf="correoR.invalid && correoR.touched" class="form-text text-danger">Obligatorio. Ingrese un correo válido</small>
-                    </div>
-                    <div class="form-group">
-                        <label>Contraseña</label>
-                        <input type="password" class="form-control" name="contraR" placeholder="Contraseña" minlength="8" ngModel [class.is-invalid]="contraR.invalid && contraR.touched" #contraR="ngModel" required>
-                        <small *ngIf="contraR.invalid && contraR.touched" class="form-text text-danger">Obligatorio.</small>
-                        <small *ngIf="contraR.invalid && contraR.touched" class="form-text text-danger">Mínimo 8 caracteres, una mayúscula y un número.</small>
-                    </div>
-                </form>
-                <hr>
-                <div class="container-fluid text-center">
-                    <h5>Administradores.</h5>
-                </div>
-                <form (ngSubmit)="guardar(formR)" #formA="ngForm">
-                    <div class="form-group">
-                        <label>Correo electr&oacute;nico</label>
-                        <input type="email" class="form-control" name="correo" placeholder="Ej. alguien@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" ngModel [class.is-invalid]="correoA.invalid && correoA.touched" #correoA="ngModel" required>
-                        <small *ngIf="correoA.invalid && correoA.touched" class="form-text text-danger">Obligatorio. Ingrese un correo válido</small>
-                    </div>
-                    <div class="form-group">
-                        <label>Contraseña</label>
-                        <input type="password" class="form-control" name="contraA" placeholder="Contraseña" minlength="8" ngModel [class.is-invalid]="contraA.invalid && contraA.touched" #contraA="ngModel" required>
-                        <small *ngIf="contraA.invalid && contraA.touched" class="form-text text-danger">Obligatorio.</small>
-                        <small *ngIf="contraA.invalid && contraA.touched" class="form-text text-danger">Mínimo 8 caracteres, una mayúscula y un número.</small>
-                    </div>
-                </form>
             </div>
-            <div class="modal-footer">
-                <div class="container-fluid text-center">
-                    <button type="button" class="btn btn-secondary mr-1" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-success">Iniciar Sesi&oacute;n</button>
-                    <button #modalRegistro class="invisible" type="button" data-toggle="modal" data-target="#modalRegistro">xxx</button>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
@@ -118,8 +78,8 @@
                     <div class="form-row mb-3">
                         <div class="col-md-12">
                             <label for="nombre">Correo: <small class="text-danger">*</small></label>
-                            <input type="text" class="form-control" placeholder="Ingrese su correo" formControlName="correo" [class.is-invalid]="validacionCorreo">
-                            <small *ngIf="validacionCorreo" class="form-text text-danger">Ingrese un correo válido.</small>
+                            <input type="text" class="form-control" placeholder="Ingrese su correo" formControlName="correo" [class.is-invalid]="validacionCorreoR">
+                            <small *ngIf="validacionCorreoR" class="form-text text-danger">Ingrese un correo válido.</small>
                         </div>
                     </div>
 
