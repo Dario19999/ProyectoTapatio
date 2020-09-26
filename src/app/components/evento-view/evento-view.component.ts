@@ -74,7 +74,7 @@ export class EventoViewComponent implements OnInit {
         }
         if(paso == 1){
             carrito[ultimaposicion] = {};
-            carrito[ultimaposicion]['id'] = id;
+            carrito[ultimaposicion]['id_boleto'] = id;
             carrito[ultimaposicion]['index'] = ultimaposicion;
             carrito[ultimaposicion]['nombre'] = nombre;
             carrito[ultimaposicion]['precio'] = precio;
@@ -86,7 +86,7 @@ export class EventoViewComponent implements OnInit {
 
     }else{
         let ultimaposicion = 0;
-        carrito[ultimaposicion]['id'] = id;
+        carrito[ultimaposicion]['id_boleto'] = id;
         carrito[ultimaposicion]['index'] = ultimaposicion;
         carrito[ultimaposicion]['nombre'] = nombre;
         carrito[ultimaposicion]['precio'] = precio;

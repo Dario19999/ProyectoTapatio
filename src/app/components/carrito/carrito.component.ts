@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { VentasService } from '../../services/ventas.service';
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-carrito',
@@ -12,10 +14,14 @@ export class CarritoComponent implements OnInit {
   carrito:any = null;
   precioTotal:number = null;
 
-  constructor(private router:Router) { }
+  loggedIn:boolean = false;
+
+  constructor(private router:Router,
+              private usuariosService:UsuariosService) { }
 
   ngOnInit() {
     this.carrito = JSON.parse(localStorage.getItem("carrito"));
+    console.log(this.loggedIn);
     if( localStorage.getItem("carrito") && this.carrito.length != 0 ) {
 
       this.vacio = false;
@@ -57,7 +63,14 @@ export class CarritoComponent implements OnInit {
     this.carrito.splice(i,1);
     localStorage.setItem('carrito', JSON.stringify(this.carrito));
     if(this.carrito.length != 0) {
+      let subtotal = 0
+
       this.vacio = false;
+
+      for(let x = 0; x < this.carrito.length; x++){
+        subtotal = this.carrito[x]['cantidad'] * this.carrito[x]['precio'];
+        this.precioTotal += subtotal;
+      }
     }
     else{
       this.vacio = true;
@@ -66,6 +79,13 @@ export class CarritoComponent implements OnInit {
   }
 
   irACompra(){
-    this.router.navigate(['compra']);
+    this.loggedIn = this.usuariosService.getEstadoSesion();
+
+    if(this.loggedIn == true){
+      this.router.navigate(['compra']);
+    }
+    else{
+      window.confirm("No puede realizar compras si no ha iniciado sesión");
+    }
   }
 }

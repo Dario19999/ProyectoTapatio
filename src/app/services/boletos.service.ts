@@ -28,7 +28,4 @@ export class BoletosService {
     return this.http.get(`${this.url}getPromosFechas.php?id_boleto=${id_boleto}`).pipe(retry(3))
   }
 
-  aplicarPromoCodigo( codigo:string ){
-    return this.http.get(`${this.url}aplicarPromoCodigo.php?codigo=${codigo}`).pipe(retry(3))
-  }
 }

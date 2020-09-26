@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
@@ -12,8 +12,8 @@ import { UsuariosService } from '../../../services/usuarios.service';
 })
 export class NavbarComponent implements OnInit {
 
-  usuarioFB: SocialUser;
-  loggedIn: boolean;
+  usuarioFB: SocialUser = null;
+  loggedIn:boolean = false;
 
   formRegistro:FormGroup;
 
@@ -22,18 +22,21 @@ export class NavbarComponent implements OnInit {
   @ViewChild('cerrarModalRegistro',{ static: false }) cerrarModalRegistro;
 
   constructor(public router:Router,
+              private activatedRoute:ActivatedRoute,
               private authService:SocialAuthService,
               private usuariosService:UsuariosService,
               private fb:FormBuilder
               ) { }
 
   ngOnInit() {
+    localStorage.removeItem("logged");
     this.formRegistroInit();
     this.authService.authState.subscribe((user) => {
       this.usuarioFB = user;
-      this.loggedIn = (user != null);
+      this.loggedIn = (this.usuarioFB != null);
 
       localStorage.setItem("usuario", JSON.stringify(this.usuarioFB));
+
       if(this.loggedIn){
         this.usuariosService.registrarUsuario(this.usuarioFB).subscribe( datos => {
           if(datos['resultado'] == "ERROR"){
@@ -41,6 +44,11 @@ export class NavbarComponent implements OnInit {
             return
           }
           else if( datos['resultado'] == "OK"){
+
+            let usuario = JSON.parse(localStorage.getItem("usuario"));
+            usuario["id_usuario"] = datos["id_usuario"];
+            localStorage.setItem("usuario", JSON.stringify(usuario));
+            console.log(usuario);
             this.cerrar.nativeElement.click();
 
             let estado = null;
@@ -50,13 +58,24 @@ export class NavbarComponent implements OnInit {
                 this.modalRegistro.nativeElement.click();
               }
               else if( estado[0].tipo_usuario == 1){
+
+                let usuario = JSON.parse(localStorage.getItem("usuario"));
+                usuario['correo'] = estado[0].correo;
+                usuario['celular'] = estado[0].celular;
+
+                localStorage.setItem("usuario", JSON.stringify(usuario));
+
+                (this.loggedIn) ? this.usuariosService.setEstadoSesion(true) : this.usuariosService.setEstadoSesion(false);
                 return
               }
             })
+            this.formRegistro.addControl('id', this.fb.control(null));
+            this.formRegistro.get('id').setValue(this.usuarioFB.id);
           }
         });
-        this.formRegistro.addControl('id', this.fb.control(null));
-        this.formRegistro.get('id').setValue(this.usuarioFB.id);
+      }
+      else{
+
       }
 
     });
@@ -116,7 +135,9 @@ export class NavbarComponent implements OnInit {
 
   logOut(): void {
     this.authService.signOut();
-    this.router.navigate(['inicio'])
+    localStorage.removeItem("usuario");
+    this.usuariosService.setEstadoSesion(false);
+    this.router.navigate(['inicio']);
   }
 
   guardarRegistro(){
@@ -127,6 +148,12 @@ export class NavbarComponent implements OnInit {
         return
       }
       else if(datos['resultado'] == "OK"){
+
+        let usuario = JSON.parse(localStorage.getItem("usuario"));
+        usuario['correo'] = datos['correo'];
+        usuario['celular'] = datos['celular'];
+        localStorage.setItem("usuario", JSON.stringify(usuario));
+
         window.confirm("Registro completado con éxito.");
         this.cerrarModalRegistro.nativeElement.click();
       }

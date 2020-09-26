@@ -30,6 +30,8 @@ import { EventosService } from './services/eventos.service';
 import { PublicacionesService } from './services/publicaciones.service';
 import { BoletosService } from './services/boletos.service';
 import { UsuariosService } from './services/usuarios.service';
+import { PagoComponent } from './components/pago/pago.component';
+import { VentasService } from './services/ventas.service';
 
 
 @NgModule({
@@ -49,6 +51,7 @@ import { UsuariosService } from './services/usuarios.service';
     CompraInfoComponent,
     CarritoComponent,
     CompraComponent,
+    PagoComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,7 @@ import { UsuariosService } from './services/usuarios.service';
     PublicacionesService,
     BoletosService,
     UsuariosService,
+    VentasService,
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {
       provide: 'SocialAuthServiceConfig',

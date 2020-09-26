@@ -12,6 +12,7 @@ import { HistorialComprasComponent } from './components/historial-compras/histor
 import { CompraInfoComponent } from './components/compra-info/compra-info.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { CompraComponent } from './components/compra/compra.component';
+import { PagoComponent } from './components/pago/pago.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'info-compra', component: CompraInfoComponent },
   { path: 'carrito', component: CarritoComponent },
   { path: 'compra', component: CompraComponent },
+  { path: 'pago', component: PagoComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];
 

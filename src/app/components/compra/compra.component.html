@@ -45,7 +45,7 @@
             </div>
             <hr>
             <div class="row">
-                <button class="btn btn-outline-success mx-auto"> Continuar con la compra</button>
+                <button class="btn btn-outline-success mx-auto" (click)="hacerCompra()"> Continuar con la compra</button>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Promocion por Código</h5>
-                <button #cerrarModalPromo type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button #cerrarModalPromoCod type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -90,16 +90,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Promocion por boleto de Referencia</h5>
-                <button #cerrarFechas type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button #cerrarModalPromoRef type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
                 <p>Ingrese el codigo de compra del boleto relacionado con el que está intentando comprar para aplicar un descuento a la compra.</p>
-                <form [formGroup]="formReferencia" (submit)="guardarPromoeferencia()">
+                <form [formGroup]="formReferencia" (submit)="aplicarPromoReferencia()">
                     <div class="form-row mb-3">
                         <label for="codigo">Código de compra: <small>(Se puede encontrar en el historial de compras.)</small></label>
-                        <input type="text" minlength="10" maxlength="10" id="codigo" class="form-control">
+                        <input type="text" id="codigo" class="form-control" formControlName="codigoBoleto">
                     </div>
                     <hr>
                     <div class="row pb-2 mt-0">
