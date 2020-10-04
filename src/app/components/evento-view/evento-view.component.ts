@@ -3,6 +3,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { EventosService } from '../../services/eventos.service';
 import { ActivatedRoute } from '@angular/router';
 import { BoletosService } from '../../services/boletos.service';
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-evento-view',
@@ -40,19 +41,97 @@ export class EventoViewComponent implements OnInit {
 
   boletos:any = null;
 
+  usuario:any = null;
+
+  puedeComentar:boolean = false;
+  puedeEliminar:boolean = false;
+  comentar:boolean = false;
+  comentarios:any = null;
+  sinComentarios:boolean = true;
+
   @ViewChild('cantBoleto') cantBoleto: ElementRef;
 
   constructor( private activatedRoute:ActivatedRoute,
                private eventosService:EventosService,
-               private boletosService:BoletosService
+               private boletosService:BoletosService,
+               private usuariosService:UsuariosService
               ) { }
 
   ngOnInit(){
     this.activatedRoute.params.subscribe( params => {
+      if(this.usuariosService.getEstadoSesion()){
+        this.validarComentarios(params['id']);
+      }
       this.eventosService.getEvento(params['id']).subscribe( resultado => this.evento = resultado[0]);
       this.eventosService.getImgs(params['id']).subscribe(resultado => this.imgs = resultado);
-      this.boletosService.getBoletos(params['id']).subscribe(resultado => this.boletos = resultado)
+      this.boletosService.getBoletos(params['id']).subscribe(resultado => this.boletos = resultado);
     })
+  }
+
+  validarComentarios( id_evento:number ){
+    this.usuario = JSON.parse(localStorage.getItem("usuario"));
+    this.usuariosService.validarComentarios(this.usuario['id_usuario'], id_evento).subscribe(datos => {
+        if(datos['estado'] == 0){
+          this.puedeComentar = false;
+          return
+        }
+        else{
+          this.puedeComentar = true;
+          this.usuariosService.comprobarComentarios(this.usuario['id_usuario'], id_evento).subscribe(resultado => {
+            if(resultado == 1){
+              this.comentar = true;
+              this.getComentarios(id_evento);
+            }
+            else{
+              this.comentar = false;
+              this.getComentarios(id_evento);
+            }
+          })
+        }
+    })
+  }
+
+  insertarComentario( comentario:string, cal:number){
+    this.usuario = JSON.parse(localStorage.getItem("usuario"));
+    this.activatedRoute.params.subscribe( params => {
+      this.usuariosService.insertarComentario(comentario, cal, params['id'], this.usuario['id_usuario']).subscribe( resultado => {
+          this.comentar = false;
+          this.getComentarios(params['id']);
+      });
+    });
+  }
+
+  getComentarios(id_evento:number){
+    this.eventosService.getComentarios(id_evento).subscribe(resultado => {
+      this.comentarios = resultado;
+
+      if(this.comentarios == null){
+        this.sinComentarios = true;
+      }
+      else{
+        this.sinComentarios = false;
+
+        for(let x = 0; x<this.comentarios.length; x++){
+          console.log(this.comentarios[x]['id_usuario']);
+          if(this.comentarios[x]['id_usuario'] == this.usuario['id_usuario']){
+            this.comentarios[x]['eliminar'] = true;
+          }
+          else{
+            this.comentarios[x]['eliminar'] = false;
+          }
+        }
+      }
+    })
+  }
+
+  eliminarComentario( id_calificacion:number ){
+    if(window.confirm("Está seguro de querer eliminar el comentario?")){
+      this.usuariosService.eliminarComentrio(id_calificacion).subscribe( () => {
+        this.activatedRoute.params.subscribe( params => {
+          this.validarComentarios(params['id']);
+        });
+      });
+    }
   }
 
   agregarCarrito( nombre:string, precio:number, cantidad:number, id:number){

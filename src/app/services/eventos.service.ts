@@ -34,4 +34,9 @@ export class EventosService {
     return this.http.get(`${this.url}buscarEvento.php?nombre_evento=${nombre}`).pipe(retry(3))
   }
 
+  getComentarios(id_evento:Number){
+    return this.http.get(`${this.url}VerComentarios.php?id_evento=${id_evento}`).pipe(retry(3))
+  }
+
+
 }

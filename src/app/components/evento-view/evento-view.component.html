@@ -34,44 +34,95 @@
         </div>
     </div>
 
-    <div class="card mb-3 border-success" *ngFor="let boleto of boletos">
-        <div class="card-header border-success">
-            <h4> {{boleto.nom_bol}} </h4>
-        </div>
-        <div class="card-body">
-            <div class="row h-100">
-                <div class="col-md-7">
-                    <h5>Descripción</h5>
-                    <p> {{ boleto.descripcion_boleto }} </p>
-                </div>
-                <div class="col-md-2 my-auto text-center">
-                    <h5>Precio</h5>
-                    <p>{{boleto.precio_bol | currency:'MXN':'symbol'}} </p>
-                </div>
-                <div class="col-md-3 my-auto">
-                    <div class="input-group inline-group m-0 p-0 justify-content-center align-items-center">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-outline-secondary btn-minus" (click)="cantBoleto.stepDown()">
-                          <i class="fa fa-minus"></i>
-                        </button>
-                        </div>
-                        <div class="w-25 m-0">
-                            <input #cantBoleto class="form-control quantity text-center" min="0" value="0" type="number">
-                        </div>
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary btn-plus" (click)="cantBoleto.stepUp()">
-                      <i class="fa fa-plus"></i>
-                    </button>
-                        </div>
+    <ng-container *ngIf="puedeComentar == false">
+        <div class="card mb-3 border-success" *ngFor="let boleto of boletos">
+            <div class="card-header border-success">
+                <h4> {{boleto.nom_bol}} </h4>
+            </div>
+            <div class="card-body">
+                <div class="row h-100">
+                    <div class="col-md-7">
+                        <h5>Descripción</h5>
+                        <p> {{ boleto.descripcion_boleto }} </p>
                     </div>
-                    <div class="text-center mt-3">
-                        <button type="button" class="btn btn-outline-success" (click)="agregarCarrito(boleto.nom_bol, boleto.precio_bol, cantBoleto.value, boleto.id_boleto)">Agregar al Carrito</button>
+                    <div class="col-md-2 my-auto text-center">
+                        <h5>Precio</h5>
+                        <p>{{boleto.precio_bol | currency:'MXN':'symbol'}} </p>
+                    </div>
+                    <div class="col-md-3 my-auto">
+                        <div class="input-group inline-group m-0 p-0 justify-content-center align-items-center">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary btn-minus" (click)="cantBoleto.stepDown()">
+                            <i class="fa fa-minus"></i>
+                          </button>
+                            </div>
+                            <div class="w-25 m-0">
+                                <input #cantBoleto class="form-control quantity text-center" min="0" value="0" type="number">
+                            </div>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary btn-plus" (click)="cantBoleto.stepUp()">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <button type="button" class="btn btn-outline-success" (click)="agregarCarrito(boleto.nom_bol, boleto.precio_bol, cantBoleto.value, boleto.id_boleto)">Agregar al Carrito</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </ng-container>
 
+    <div class="card" *ngIf="puedeComentar">
+        <div class="card-header">
+            <h4>Comentarios.</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="text-danger" *ngIf="sinComentarios == true"> No hay comentarios. </h5>
+            <ng-container *ngIf="sinComentarios == false">
+                <div class="card" *ngFor="let comentario of comentarios">
+                    <div class="card-body">
+                        <div class="row h-100">
+                            <div class="col-md-2 text-center my-auto">
+                                <h6>{{ comentario.nombre_usuario }}</h6>
+                                <h5>{{ comentario.num_calificacion }} Puntos</h5>
+                            </div>
+                            <div class="col-md-8 text-left">
+                                <p>{{ comentario.opinion }}</p>
+                            </div>
+                            <div class="col-md-2 my-auto">
+                                <button type="button" class="btn btn-danger mx-auto my-auto d-block" *ngIf="comentario.eliminar == true" (click)="eliminarComentario(comentario.id_calificacion)">X</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="card-footer" *ngIf="comentar != false">
+            <div class="row mt-2">
+                <div class="col-md-3">
+                    <h6>Califique el Evento<small> (1 - 10)</small></h6>
+                    <input type="number" #cal min="0" max="10" step="1" value="10" class="text-center form-control mt-2">
+                </div>
+                <div class="col-md-7">
+                    <div class="input-group input-group-sm">
+                        <textarea style="resize: none;" class="form-control" cols="290" rows="3" placeholder="Agrega un Comentario" #comentar (keyup.enter)="insertarComentario(comentar.value, cal.value)"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-outline-primary mx-auto mt-4" type="button" (click)="insertarComentario(comentar.value, cal.value)">
+                      Comentar
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 d-block mx-auto text-center">
+                    <small>Sólo puede comentar una vez. Exprese bien su opinión en un solo comentario.</small>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <br>
 <br>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { retry } from 'rxjs/operators';
 import { serialize } from 'object-to-formdata';
 import { logging } from 'protractor';
+import { pipe } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,22 @@ export class UsuariosService {
   getEstadoSesion(){
     return this.estadoS
   }
+
+  validarComentarios(id_usaurio:Number, id_evento:Number){
+    return this.http.get(`${this.url}ValidarComentario.php?id_evento=${id_evento}&id_usuario=${id_usaurio}`).pipe(retry(3))
+  }
+
+  comprobarComentarios(id_usaurio:Number, id_evento:Number){
+    return this.http.get(`${this.url}ComprobarComentario.php?id_evento=${id_evento}&id_usuario=${id_usaurio}`).pipe(retry(3))
+  }
+
+  insertarComentario(comentario:string, cal:number, id_evento:number, id_usuario:number){
+    return this.http.get(`${this.url}InsertarComentario.php?comentario=${comentario}&cal=${cal}&id_evento=${id_evento}&id_usuario=${id_usuario}`).pipe(retry(3))
+  }
+
+  eliminarComentrio(id_cal:number){
+    return this.http.get(`${this.url}EliminarComentario.php?id_cal=${id_cal}`).pipe(retry(3))
+  }
+
 
 }
