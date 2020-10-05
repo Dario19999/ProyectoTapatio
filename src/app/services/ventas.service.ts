@@ -6,8 +6,8 @@ import { serialize } from 'object-to-formdata';
 @Injectable()
 export class VentasService {
 
-  // url = "https://proyectotapatio.com/PT-API-P/ventas/";
-  url = "http://localhost:8080/PT-API/ventas/";
+  url = "https://proyectotapatio.com/PT-API-P/ventas/";
+  // url = "http://localhost:8080/PT-API/ventas/";
 
   constructor(private http:HttpClient) { }
 

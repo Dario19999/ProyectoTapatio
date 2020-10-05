@@ -9,7 +9,7 @@ import { UsuariosService } from '../../services/usuarios.service';
 })
 export class PerfilComponent implements OnInit {
 
-  usuarioFB:SocialUser;
+  usuarioFB:any = null;
   usuario:any = {};
 
   constructor(private router:Router,
@@ -17,12 +17,17 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit() {
     this.usuarioFB = JSON.parse(localStorage.getItem("usuario"));
-    console.log(this.usuarioFB);
-
-    this.usuariosService.getUsuario(this.usuarioFB.id).subscribe( resultado => this.usuario = resultado[0]);
+    this.usuariosService.getUsuario(this.usuarioFB.id).subscribe( resultado => {
+      this.usuario = resultado;
+      console.log(this.usuario);
+    });
   }
 
   verHistorial(){
     this.router.navigate(['historial'])
+  }
+
+  editarPerfil(){
+    this.router.navigate(['editar-perfil'])
   }
 }

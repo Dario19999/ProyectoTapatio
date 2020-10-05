@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
@@ -22,7 +22,6 @@ export class NavbarComponent implements OnInit {
   @ViewChild('cerrarModalRegistro',{ static: false }) cerrarModalRegistro;
 
   constructor(public router:Router,
-              private activatedRoute:ActivatedRoute,
               private authService:SocialAuthService,
               private usuariosService:UsuariosService,
               private fb:FormBuilder
