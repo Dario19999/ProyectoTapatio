@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {environment} from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ProyectoTapatio';
+
+  ngOnInit(): void {
+    if (environment.production) {
+      if (location.protocol === 'http:') {
+        // NO SE DEBERÍA HACER
+        window.location.href = location.href.replace('http', 'https');
+      }
+    }
+  }
+
+
 }
