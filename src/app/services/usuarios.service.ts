@@ -2,18 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { retry } from 'rxjs/operators';
 import { serialize } from 'object-to-formdata';
-import { logging } from 'protractor';
-import { pipe } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
 
-  url = "https://proyectotapatio.com/PT-API-P/usuarios/";
-  // url = "http://localhost:8080/PT-API/usuarios/";
+  // url = "https://proyectotapatio.com/PT-API-P/usuarios/";
+  url = "http://localhost:8080/PT-API/usuarios/";
 
-  estadoS:boolean;
+  estadoS:boolean = false;
 
   constructor(private http:HttpClient) { }
 
@@ -70,6 +68,10 @@ export class UsuariosService {
   editarInformacion(info:any){
     const INFO = serialize(info);
     return this.http.post(`${this.url}editarUsuario.php`, INFO).pipe(retry(3))
+  }
+
+  buscarCorreo( correo:string, id:number = null ){
+    return this.http.get(`${this.url}consultaCorreo.php?correo=${correo}&id=${id}`).pipe(retry(3))
   }
 
 }

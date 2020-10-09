@@ -14,21 +14,31 @@ export class PerfilEditarComponent implements OnInit {
 
   formEditar:FormGroup;
 
+  loggedIn:boolean = false;
+
   constructor(private usuariosService:UsuariosService,
               private fb:FormBuilder,
               private router:Router) { }
 
   ngOnInit() {
-    this.editarFormInit();
-    this.usuarioFB = JSON.parse(localStorage.getItem("usuario"));
-    this.usuariosService.getUsuario(this.usuarioFB.id).subscribe( resultado => {
-      this.usuario = resultado;
-      this.formEditar.setValue({
-        correo: this.usuario.correo,
-        celular: this.usuario.celular,
-        celularExt: this.usuario.celular_ext
+
+    this.loggedIn = this.usuariosService.getEstadoSesion();
+
+    if(!this.loggedIn){
+      this.router.navigate(['inicio']);
+    }
+    else{
+      this.editarFormInit();
+      this.usuarioFB = JSON.parse(localStorage.getItem("usuario"));
+      this.usuariosService.getUsuario(this.usuarioFB.id).subscribe( resultado => {
+        this.usuario = resultado;
+        this.formEditar.setValue({
+          correo: this.usuario.correo,
+          celular: this.usuario.celular,
+          celularExt: this.usuario.celular_ext
+        });
       });
-    });
+    }
   }
 
   editarFormInit(){
@@ -65,17 +75,25 @@ export class PerfilEditarComponent implements OnInit {
   guardarCambios(){
     this.formEditar.addControl('id_usuario', this.fb.control(null));
     this.formEditar.get('id_usuario').setValue(this.usuarioFB['id_usuario']);
-
-    this.usuariosService.editarInformacion(this.formEditar.value).subscribe(datos => {
-      if(datos['resultado'] == "ERROR"){
-        window.confirm("Ha ocurrido un error inesperado. Intentar más tarde.")
+    console.log(this.formEditar.value);
+    this.usuariosService.buscarCorreo(this.formEditar.get('correo').value, this.formEditar.get('id_usuario').value).subscribe(datos => {
+      if(datos['estado'] == 0){
+        window.confirm(datos['mensaje']);
         return
       }
-      else{
-        window.confirm("Información editada con éxito.")
-        this.router.navigate(['perfil']);
+      else if(datos['estado'] == 1){
+        this.usuariosService.editarInformacion(this.formEditar.value).subscribe(datos => {
+          if(datos['resultado'] == "ERROR"){
+            window.confirm("Ha ocurrido un error inesperado. Intentar más tarde.")
+            return
+          }
+          else{
+            window.confirm("Información editada con éxito.")
+            this.router.navigate(['perfil']);
+          }
+        })
       }
-    })
+    });
   }
 
   regresar(){

@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
     if (environment.production) {
       if (location.protocol === 'http:') {
         // NO SE DEBERÍA HACER
-        window.location.href = location.href.replace('http', 'https');
+        // window.location.href = location.href.replace('http', 'https');
       }
     }
   }

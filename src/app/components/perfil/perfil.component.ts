@@ -12,15 +12,24 @@ export class PerfilComponent implements OnInit {
   usuarioFB:any = null;
   usuario:any = {};
 
+  loggedIn:boolean = false;
+
   constructor(private router:Router,
               private usuariosService:UsuariosService) { }
 
   ngOnInit() {
-    this.usuarioFB = JSON.parse(localStorage.getItem("usuario"));
-    this.usuariosService.getUsuario(this.usuarioFB.id).subscribe( resultado => {
-      this.usuario = resultado;
-      console.log(this.usuario);
-    });
+    this.loggedIn = this.usuariosService.getEstadoSesion();
+
+    if(!this.loggedIn){
+      this.router.navigate(['inicio']);
+    }
+    else{
+      this.usuarioFB = JSON.parse(localStorage.getItem("usuario"));
+      this.usuariosService.getUsuario(this.usuarioFB.id).subscribe( resultado => {
+        this.usuario = resultado;
+        console.log(this.usuario);
+      });
+    }
   }
 
   verHistorial(){

@@ -34,7 +34,17 @@
         </div>
     </div>
 
-    <ng-container *ngIf="puedeComentar == false">
+    <div class="card mb-3 border-danger" *ngIf="cancelado == true">
+        <div class="card-body">
+            <div class="row h-100">
+                <div class="col-md-12 text-center">
+                    <h5 class="text-danger">Este evento ha sido cancelado.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-container *ngIf="puedeComentar == false && cancelado == false">
         <div class="card mb-3 border-success" *ngFor="let boleto of boletos">
             <div class="card-header border-success">
                 <h4> {{boleto.nom_bol}} </h4>
@@ -57,7 +67,7 @@
                           </button>
                             </div>
                             <div class="w-25 m-0">
-                                <input #cantBoleto class="form-control quantity text-center" min="0" value="0" type="number">
+                                <input #cantBoleto class="form-control quantity text-center" min="1" value="1" type="number" disabled>
                             </div>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary btn-plus" (click)="cantBoleto.stepUp()">
@@ -74,7 +84,17 @@
         </div>
     </ng-container>
 
-    <div class="card" *ngIf="puedeComentar">
+    <div class="card mb-3 border-danger" *ngIf="puedeComentar == true && loggedIn == false">
+        <div class="card-body">
+            <div class="row h-100">
+                <div class="col-md-12 text-center">
+                    <h5 class="text-danger">Este evento ha finalizado.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" *ngIf="puedeComentar == true && loggedIn == true">
         <div class="card-header">
             <h4>Comentarios.</h4>
         </div>

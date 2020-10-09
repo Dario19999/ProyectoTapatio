@@ -28,22 +28,23 @@ export class CompraComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuario = JSON.parse(localStorage.getItem("usuario"));
-    console.log(this.usuario);
     this.loggedIn = this.usuariosService.getEstadoSesion();
 
     if(!this.loggedIn){
       this.router.navigate(['carrito']);
     }
+    else{
+      this.formCodigoInit();
+      this.formReferenciaInit();
+      this.compra = JSON.parse(localStorage.getItem("carrito"));
+      let subtotal = 0
 
-    this.formCodigoInit();
-    this.formReferenciaInit();
-    this.compra = JSON.parse(localStorage.getItem("carrito"));
-    let subtotal = 0
-
-    for(let x = 0; x < this.compra.length; x++){
-      subtotal = this.compra[x]['cantidad'] * this.compra[x]['precio'];
-      this.total += subtotal;
+      for(let x = 0; x < this.compra.length; x++){
+        subtotal = this.compra[x]['cantidad'] * this.compra[x]['precio'];
+        this.total += subtotal;
+      }
     }
+
 
   }
 
