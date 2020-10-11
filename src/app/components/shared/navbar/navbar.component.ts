@@ -144,6 +144,8 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem("usuario");
     this.usuariosService.setEstadoSesion(false);
     this.router.navigate(['inicio']);
+    this.usuarioFB = null;
+    this.loggedIn = false;
   }
 
   guardarRegistro(){
