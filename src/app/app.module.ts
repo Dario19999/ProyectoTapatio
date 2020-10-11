@@ -32,6 +32,7 @@ import { BoletosService } from './services/boletos.service';
 import { UsuariosService } from './services/usuarios.service';
 import { PagoComponent } from './components/pago/pago.component';
 import { VentasService } from './services/ventas.service';
+import { PerfilEditarComponent } from './components/perfil-editar/perfil-editar.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { VentasService } from './services/ventas.service';
     CarritoComponent,
     CompraComponent,
     PagoComponent,
+    PerfilEditarComponent,
   ],
   imports: [
     BrowserModule,

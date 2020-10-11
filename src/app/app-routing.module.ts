@@ -13,6 +13,7 @@ import { CompraInfoComponent } from './components/compra-info/compra-info.compon
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { CompraComponent } from './components/compra/compra.component';
 import { PagoComponent } from './components/pago/pago.component';
+import { PerfilEditarComponent } from './components/perfil-editar/perfil-editar.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent },
@@ -22,9 +23,10 @@ const routes: Routes = [
   { path: 'nosotros', component: NosotrosComponent },
   { path: 'evento/:id', component: EventoViewComponent },
   { path: 'perfil', component: PerfilComponent },
+  { path: 'editar-perfil', component: PerfilEditarComponent },
   { path: 'publicacion/:id', component: PublicacionViewComponent },
   { path: 'historial', component: HistorialComprasComponent },
-  { path: 'info-compra', component: CompraInfoComponent },
+  { path: 'info-compra/:id', component: CompraInfoComponent },
   { path: 'carrito', component: CarritoComponent },
   { path: 'compra', component: CompraComponent },
   { path: 'pago', component: PagoComponent },

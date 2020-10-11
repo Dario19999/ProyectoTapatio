@@ -6,29 +6,29 @@
                 <div class="card" *ngFor="let boleto of carrito; let i=index">
                     <div class="card-body">
                         <div class="row h-100">
-                            <div class="col-md-3 text-center my-auto">
+                            <div class="col-md-2 text-center my-auto">
                                 <h5> {{boleto.nombre}} </h5>
                             </div>
                             <div class="col-md-3 text-center">
                                 <h5>Cantidad:</h5>
                                 <div class="input-group inline-group m-0 p-0 justify-content-center align-items-center">
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary btn-minus" (click)="cantBoleto.stepDown(); modificarCarrito(i, cantBoleto.value, 0)">
-                                      <i class="fa fa-minus"></i>
-                                    </button>
+                                        <button class="btn btn-outline-secondary btn-minus" (click)="cantBoleto.stepDown(); modificarCarrito(i, cantBoleto.value, 0)" [disabled]="boleto.bloqueado">
+                                          <i class="fa fa-minus"></i>
+                                        </button>
                                     </div>
                                     <div class="w-25 m-0">
-                                        <input #cantBoleto class="form-control quantity text-center" min="0" [value]="boleto.cantidad" type="number">
+                                        <input #cantBoleto type="number" min="0" value="0" [value]="boleto.cantidad" class="form-control quantity text-center" disabled>
                                     </div>
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary btn-plus" (click)="cantBoleto.stepUp(); modificarCarrito(i, cantBoleto.value, 1)">
-                                  <i class="fa fa-plus"></i>
-                                </button>
+                                          <i class="fa fa-plus"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-2 text-center">
-                                <label> Precio por Unidad: </label>
+                            <div class="col-md-3 text-center">
+                                <label> Precio Individual: </label>
                                 <h5> {{ boleto.precio | currency:'MXN':'symbol' }} </h5>
                             </div>
                             <div class="col-md-2 text-center">

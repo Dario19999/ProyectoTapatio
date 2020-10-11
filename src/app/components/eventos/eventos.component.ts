@@ -32,7 +32,7 @@ export class EventosComponent implements OnInit {
   }
 
   getEventos(){
-    this.eventosService.getEventos(2).subscribe( resultado => this.eventos = resultado );
+    this.eventosService.getEventos(-1).subscribe( resultado => this.eventos = resultado );
   }
 
   filtrar(){

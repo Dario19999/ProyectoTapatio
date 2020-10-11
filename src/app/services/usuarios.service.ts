@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { retry } from 'rxjs/operators';
 import { serialize } from 'object-to-formdata';
-import { logging } from 'protractor';
-import { pipe } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +11,7 @@ export class UsuariosService {
   // url = "https://proyectotapatio.com/PT-API-P/usuarios/";
   url = "http://localhost:8080/PT-API/usuarios/";
 
-  estadoS:boolean;
+  estadoS:boolean = false;
 
   constructor(private http:HttpClient) { }
 
@@ -31,8 +29,8 @@ export class UsuariosService {
     return this.http.get(`${this.url}consultaUsuario.php?id=${id}`).pipe(retry(3))
   }
 
-  getUsuario(id_fb:string){
-    return this.http.get(`${this.url}getUsuario.php?id=${id_fb}`).pipe(retry(3))
+  getUsuario(id_fb:string, id_usuario:number=null){
+    return this.http.get(`${this.url}getUsuario.php?id_fb=${id_fb}&id_usuario=${id_usuario}`).pipe(retry(3))
   }
 
   setEstadoSesion( estado:boolean ){
@@ -59,5 +57,21 @@ export class UsuariosService {
     return this.http.get(`${this.url}EliminarComentario.php?id_cal=${id_cal}`).pipe(retry(3))
   }
 
+  verVentas(id_usuario:number){
+    return this.http.get(`${this.url}VerVentas.php?id_usuario=${id_usuario}`).pipe(retry(3))
+  }
+
+  elementosVenta(id_venta:number){
+    return this.http.get(`${this.url}VerElementosVentaIndividual.php?id_venta=${id_venta}`).pipe(retry(3))
+  }
+
+  editarInformacion(info:any){
+    const INFO = serialize(info);
+    return this.http.post(`${this.url}editarUsuario.php`, INFO).pipe(retry(3))
+  }
+
+  buscarCorreo( correo:string, id:number = null ){
+    return this.http.get(`${this.url}consultaCorreo.php?correo=${correo}&id=${id}`).pipe(retry(3))
+  }
 
 }

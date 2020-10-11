@@ -1,39 +1,33 @@
-<div class="container-fluid p-4">
+<div class="container-fluid animated fadeIn fast mt-3">
     <div class="card border-primary">
         <div class="card-header text-center border-primary">
             <h4>Historial de Compras</h4>
         </div>
-        <div class="card-body p-2">
-            <div class="row border rounded m-2">
-                <div class="col-md-4 border-right text-center p-2">
-                    <h5>Nombre del Evento</h5>
-                    <h6>Numero de compra: x</h6>
-                    <h6>Subtotal: $</h6>
-                </div>
-                <div class="col-md-8 text-center my-auto">
-                    <button (click)="verCompra()" class="btn btn-primary">Ver más</button>
-                </div>
-            </div>
-            <div class="row border rounded m-2 h-100">
-                <div class="col-md-4 border-right text-center p-2">
-                    <h5>Nombre del Evento</h5>
-                    <h6>Numero de compra: x</h6>
-                    <h6>Subtotal: $</h6>
-                </div>
-                <div class="col-md-8 text-center my-auto">
-                    <button (click)="verCompra()" class="btn btn-primary">Ver más</button>
-                </div>
-            </div>
-            <div class="row border rounded m-2 h-100">
-                <div class="col-md-4 border-right text-center p-2">
-                    <h5>Nombre del Evento</h5>
-                    <h6>Numero de compra: x</h6>
-                    <h6>Subtotal: $</h6>
-                </div>
-                <div class="col-md-8 text-center my-auto">
-                    <button (click)="verCompra()" class="btn btn-primary">Ver más</button>
-                </div>
-            </div>
+        <div class="card-body">
+            <table class="table table-striped table-bordered table-hover" *ngIf="hayCompras">
+                <thead class="thead-light text-center">
+                    <tr>
+                        <th scope="col" style="width: 10%;">Numero de Compra</th>
+                        <th scope="col" style="width: 20%;">Fecha de Compra</th>
+                        <th scope="col" style="width: 10%;">Subtotal</th>
+                        <th scope="col" style="width: 10%;">Estado de Pago</th>
+                        <th scope="col" style="width: 10%;">Estado de Entrega</th>
+                        <th scope="col" style="width: 10%;"></th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr *ngFor="let compra of historial">
+                        <th scope="row" class="align-middle">{{ compra.id_venta }}</th>
+                        <td class="align-middle">{{ compra.fec_ven }}</td>
+                        <td class="align-middle">{{ compra.sub_ven | currency:'MXN':'symbol'}}</td>
+                        <td class="align-middle">{{ compra.pago }}</td>
+                        <td class="align-middle">{{ compra.entrega }}</td>
+                        <td class="align-middle"><button (click)="verCompra(compra.id_venta)" class="btn btn-outline-primary">Ver más</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5 class="text-danger text-center" *ngIf="!hayCompras">No hay compras aún.</h5>
+
         </div>
     </div>
 </div>

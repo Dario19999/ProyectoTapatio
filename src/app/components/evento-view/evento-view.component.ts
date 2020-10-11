@@ -48,6 +48,9 @@ export class EventoViewComponent implements OnInit {
   comentar:boolean = false;
   comentarios:any = null;
   sinComentarios:boolean = true;
+  cancelado: boolean = false;
+
+  loggedIn:boolean = false;
 
   @ViewChild('cantBoleto') cantBoleto: ElementRef;
 
@@ -58,8 +61,10 @@ export class EventoViewComponent implements OnInit {
               ) { }
 
   ngOnInit(){
+    this.loggedIn = this.usuariosService.getEstadoSesion();
     this.activatedRoute.params.subscribe( params => {
-      if(this.usuariosService.getEstadoSesion()){
+      this.getEstadoEvento(params['id']);
+      if(this.loggedIn){
         this.validarComentarios(params['id']);
       }
       this.eventosService.getEvento(params['id']).subscribe( resultado => this.evento = resultado[0]);
@@ -68,15 +73,40 @@ export class EventoViewComponent implements OnInit {
     })
   }
 
-  validarComentarios( id_evento:number ){
-    this.usuario = JSON.parse(localStorage.getItem("usuario"));
-    this.usuariosService.validarComentarios(this.usuario['id_usuario'], id_evento).subscribe(datos => {
-        if(datos['estado'] == 0){
+  getEstadoEvento(id_evento:number){
+    this.eventosService.getEstadoEvento(id_evento).subscribe(datos => {
+      console.log(datos['estado']);
+      console.log(this.loggedIn);
+      if(datos['resultado'] == "ERROR"){
+        window.confirm("Ha ocurrido un error inesperado: intentarlo más tarde.");
+        return
+      }
+      else{
+        if(datos['estado'] == 1){
           this.puedeComentar = false;
+          return
+        }
+        else if(datos['estado'] == 2){
+          this.cancelado = true;
           return
         }
         else{
           this.puedeComentar = true;
+          return
+        }
+      }
+    })
+  }
+
+  validarComentarios( id_evento:number ){
+    this.usuario = JSON.parse(localStorage.getItem("usuario"));
+    this.usuariosService.validarComentarios(this.usuario['id_usuario'], id_evento).subscribe(datos => {
+        if(datos['estado'] == 0){
+          this.comentar = false;
+          this.getComentarios(id_evento);
+          return
+        }
+        else{
           this.usuariosService.comprobarComentarios(this.usuario['id_usuario'], id_evento).subscribe(resultado => {
             if(resultado == 1){
               this.comentar = true;

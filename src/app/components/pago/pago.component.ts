@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { VentasService } from 'src/app/services/ventas.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pago',
@@ -15,19 +16,26 @@ export class PagoComponent implements OnInit {
   respuestaTienda:any = null;
 
   constructor(private ventasService:VentasService,
-              private usuariosService:UsuariosService) { }
+              private usuariosService:UsuariosService,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.usuario = JSON.parse(localStorage.getItem("usuario"));
     console.log(this.usuario);
     this.loggedIn = this.usuariosService.getEstadoSesion();
-    this.compra = JSON.parse(localStorage.getItem("compra"));
 
-    let subtotal = 0
+    if(!this.loggedIn){
+      this.router.navigate(['carrito']);
+    }
+    else{
+      this.compra = JSON.parse(localStorage.getItem("compra"));
 
-    for(let x = 0; x < this.compra.length; x++){
-      subtotal = this.compra[x]['cantidad'] * this.compra[x]['precio'];
-      this.total += subtotal;
+      let subtotal = 0
+
+      for(let x = 0; x < this.compra.length; x++){
+        subtotal = this.compra[x]['cantidad'] * this.compra[x]['precio'];
+        this.total += subtotal;
+      }
     }
   }
 
@@ -68,6 +76,8 @@ export class PagoComponent implements OnInit {
           else{
 
           }
+          localStorage.removeItem('carrito');
+          this.router.navigate(['historial']);
         }
       }
     })

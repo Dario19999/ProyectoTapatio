@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { VentasService } from '../../services/ventas.service';
 import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
@@ -14,14 +13,17 @@ export class CarritoComponent implements OnInit {
   carrito:any = null;
   precioTotal:number = null;
 
+  bloqBtn:boolean = false;
+
   loggedIn:boolean = false;
+
 
   constructor(private router:Router,
               private usuariosService:UsuariosService) { }
 
   ngOnInit() {
-    this.carrito = JSON.parse(localStorage.getItem("carrito"));
     console.log(this.loggedIn);
+    this.carrito = JSON.parse(localStorage.getItem("carrito"));
     if( localStorage.getItem("carrito") && this.carrito.length != 0 ) {
 
       this.vacio = false;
@@ -39,18 +41,25 @@ export class CarritoComponent implements OnInit {
   }
 
   modificarCarrito( i:number, cant:number, op:number ){
-    console.log(i);
+    console.log(cant);
+
     this.carrito = JSON.parse(localStorage.getItem("carrito"));
 
-    for(let x = 0; x < this.carrito.length; x++){
-      if(this.carrito[x]['index'] == i){
-        this.carrito[x]['cantidad'] = cant;
+    if(this.carrito[i]['index'] == i){
+      this.carrito[i]['cantidad'] = cant;
+      this.carrito[i]['bloqueado'] = false;
 
-        if(op == 1){
-          this.precioTotal = this.precioTotal + Number(this.carrito[x]['precio']);
+      if(op == 1){
+        this.precioTotal = this.precioTotal + Number(this.carrito[i]['precio']);
+      }
+      else if(op == 0 && cant >= 0){
+
+        if(cant == 0 && this.carrito[i]['bloqueado'] == false){
+          this.precioTotal = this.precioTotal - Number(this.carrito[i]['precio']);
+          this.carrito[i]['bloqueado'] = true;
         }
-        else if(op == 0){
-          this.precioTotal = this.precioTotal - Number(this.carrito[x]['precio']);
+        else{
+          this.precioTotal = this.precioTotal - Number(this.carrito[i]['precio']);
         }
       }
     }
@@ -67,6 +76,8 @@ export class CarritoComponent implements OnInit {
 
       this.vacio = false;
 
+      this.precioTotal = 0;
+
       for(let x = 0; x < this.carrito.length; x++){
         subtotal = this.carrito[x]['cantidad'] * this.carrito[x]['precio'];
         this.precioTotal += subtotal;
@@ -80,7 +91,7 @@ export class CarritoComponent implements OnInit {
 
   irACompra(){
     this.loggedIn = this.usuariosService.getEstadoSesion();
-
+    console.log(this.loggedIn);
     if(this.loggedIn == true){
       this.router.navigate(['compra']);
     }

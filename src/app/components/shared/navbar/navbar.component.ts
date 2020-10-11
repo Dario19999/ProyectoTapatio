@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
@@ -22,7 +22,6 @@ export class NavbarComponent implements OnInit {
   @ViewChild('cerrarModalRegistro',{ static: false }) cerrarModalRegistro;
 
   constructor(public router:Router,
-              private activatedRoute:ActivatedRoute,
               private authService:SocialAuthService,
               private usuariosService:UsuariosService,
               private fb:FormBuilder
@@ -48,7 +47,6 @@ export class NavbarComponent implements OnInit {
             let usuario = JSON.parse(localStorage.getItem("usuario"));
             usuario["id_usuario"] = datos["id_usuario"];
             localStorage.setItem("usuario", JSON.stringify(usuario));
-            console.log(usuario);
             this.cerrar.nativeElement.click();
 
             let estado = null;
@@ -65,19 +63,20 @@ export class NavbarComponent implements OnInit {
 
                 localStorage.setItem("usuario", JSON.stringify(usuario));
 
-                (this.loggedIn) ? this.usuariosService.setEstadoSesion(true) : this.usuariosService.setEstadoSesion(false);
                 return
               }
-            })
+            });
+
+            (this.loggedIn) ? this.usuariosService.setEstadoSesion(true) : this.usuariosService.setEstadoSesion(false);
             this.formRegistro.addControl('id', this.fb.control(null));
             this.formRegistro.get('id').setValue(this.usuarioFB.id);
+
           }
         });
       }
       else{
-
+        window.confirm("No se ha podido iniciar sesion.")
       }
-
     });
   }
 
@@ -142,21 +141,30 @@ export class NavbarComponent implements OnInit {
 
   guardarRegistro(){
     console.log(this.formRegistro.value);
-    this.usuariosService.terminarRegistro(this.formRegistro.value).subscribe( datos => {
-      if(datos['resultado'] == "ERROR"){
-        window.confirm("Ocurrio un error. Inténtelo más tarde.");
+
+    this.usuariosService.buscarCorreo(this.formRegistro.get('correo').value).subscribe(datos => {
+      if(datos['estado'] == 0){
+        window.confirm(datos['mensaje']);
         return
       }
-      else if(datos['resultado'] == "OK"){
+      else if(datos['estado'] == 1){
+        this.usuariosService.terminarRegistro(this.formRegistro.value).subscribe( datos => {
+          if(datos['resultado'] == "ERROR"){
+            window.confirm("Ocurrio un error. Inténtelo más tarde.");
+            return
+          }
+          else if(datos['resultado'] == "OK"){
 
-        let usuario = JSON.parse(localStorage.getItem("usuario"));
-        usuario['correo'] = datos['correo'];
-        usuario['celular'] = datos['celular'];
-        localStorage.setItem("usuario", JSON.stringify(usuario));
+            let usuario = JSON.parse(localStorage.getItem("usuario"));
+            usuario['correo'] = datos['correo'];
+            usuario['celular'] = datos['celular'];
+            localStorage.setItem("usuario", JSON.stringify(usuario));
 
-        window.confirm("Registro completado con éxito.");
-        this.cerrarModalRegistro.nativeElement.click();
+            window.confirm("Registro completado con éxito.");
+            this.cerrarModalRegistro.nativeElement.click();
+          }
+        })
       }
-    })
+    });
   }
 }
