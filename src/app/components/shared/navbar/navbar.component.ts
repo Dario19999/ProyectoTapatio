@@ -30,11 +30,18 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     localStorage.removeItem("logged");
     this.formRegistroInit();
-    this.authService.authState.subscribe((user) => {
-      this.usuarioFB = user;
-      this.loggedIn = (this.usuarioFB != null);
 
-      localStorage.setItem("usuario", JSON.stringify(this.usuarioFB));
+    if (localStorage.getItem('usuario') !== null) {
+      this.usuarioFB = JSON.parse(localStorage.getItem('usuario'));
+      this.loggedIn = true;
+    }
+
+    this.authService.authState.subscribe((user) => {
+      if (this.usuarioFB === null ) {
+        this.usuarioFB = user;
+        this.loggedIn = (this.usuarioFB != null);
+        localStorage.setItem("usuario", JSON.stringify(this.usuarioFB));
+      }
 
       if(this.loggedIn){
         this.usuariosService.registrarUsuario(this.usuarioFB).subscribe( datos => {
@@ -137,6 +144,8 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem("usuario");
     this.usuariosService.setEstadoSesion(false);
     this.router.navigate(['inicio']);
+    this.usuarioFB = null;
+    this.loggedIn = false;
   }
 
   guardarRegistro(){

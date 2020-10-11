@@ -75,7 +75,7 @@ import { PerfilEditarComponent } from './components/perfil-editar/perfil-editar.
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
-        autoLogin: true,
+        autoLogin: false,
         providers: [
           {
             id: FacebookLoginProvider.PROVIDER_ID,
