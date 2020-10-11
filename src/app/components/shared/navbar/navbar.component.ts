@@ -43,7 +43,6 @@ export class NavbarComponent implements OnInit {
         localStorage.setItem("usuario", JSON.stringify(this.usuarioFB));
       }
 
-
       if(this.loggedIn){
         this.usuariosService.registrarUsuario(this.usuarioFB).subscribe( datos => {
           if(datos['resultado'] == "ERROR"){
