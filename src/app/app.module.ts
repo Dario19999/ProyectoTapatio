@@ -73,7 +73,7 @@ import { VentasService } from './services/ventas.service';
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
-        autoLogin: false,
+        autoLogin: true,
         providers: [
           {
             id: FacebookLoginProvider.PROVIDER_ID,
