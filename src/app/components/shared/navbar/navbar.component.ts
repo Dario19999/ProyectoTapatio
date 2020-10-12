@@ -34,6 +34,7 @@ export class NavbarComponent implements OnInit {
     if (localStorage.getItem('usuario') !== null) {
       this.usuarioFB = JSON.parse(localStorage.getItem('usuario'));
       this.loggedIn = true;
+      this.usuariosService.setEstadoSesion(true);
     }
 
     this.authService.authState.subscribe((user) => {
