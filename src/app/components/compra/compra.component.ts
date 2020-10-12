@@ -78,7 +78,14 @@ export class CompraComponent implements OnInit {
             let cantidad_cod = datos['cantidad'];
             let precio_cod = datos['precio'];
 
-            let carrito = JSON.parse(localStorage.getItem('carrito'));
+            let carrito;
+
+            if(this.compra != null){
+              carrito = this.compra
+            }
+            else{
+              carrito = JSON.parse(localStorage.getItem("carrito"));
+            }
 
             let cantCarrito = carrito.length;
 
@@ -91,7 +98,7 @@ export class CompraComponent implements OnInit {
                 let cantidad = Number(carrito[x]['cantidad']);
                 cantidad = cantidad - Number(cantidad_cod);
 
-                if(cantidad < 0){
+                if(cantidad <= 0){
                     cantidad = cantidad + Number(cantidad_cod);
                     carrito[x]['precio'] = precio_cod;
                     carrito[x]['cantidad'] = cantidad;
@@ -141,7 +148,12 @@ export class CompraComponent implements OnInit {
   aplicarPromoReferencia(){
     let codigo = Number(this.formReferencia.get('codigoBoleto').value);
 
-    this.carrito = JSON.parse(localStorage.getItem("carrito"));
+    if(this.compra != null){
+      this.carrito = this.compra
+    }
+    else{
+      this.carrito = JSON.parse(localStorage.getItem("carrito"));
+    }
 
     this.ventasService.aplicarPromoRelacionado( codigo, Number(this.usuario['id_usuario']), this.carrito).subscribe( datos => {
       if(datos["resultado"] == "ERROR"){

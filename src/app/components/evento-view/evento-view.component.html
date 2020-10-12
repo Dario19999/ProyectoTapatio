@@ -25,6 +25,11 @@
                 <h4>Enlace.</h4>
                 <p> {{evento.enlace_evento}} </p>
             </div>
+            <hr>
+            <div class="container-fluid text-left" *ngIf="puedeComentar == true">
+                <h4>Calificación del Evento.</h4>
+                <h5> {{evento.calificacion_evento}} </h5>
+            </div>
         </div>
         <div class="card-footer">
             <p class="card-text">
@@ -123,7 +128,21 @@
             <div class="row mt-2">
                 <div class="col-md-3">
                     <h6>Califique el Evento<small> (1 - 10)</small></h6>
-                    <input type="number" #cal min="0" max="10" step="1" value="10" class="text-center form-control mt-2">
+                    <div class="input-group inline-group m-0 p-0 justify-content-center align-items-center">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary btn-minus" (click)="cal.stepDown()">
+                              <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                        <div class="w-25 m-0">
+                            <input #cal class="form-control quantity text-center" min="1" max="10" value="1" step="1" type="number" disabled>
+                        </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary btn-plus" (click)="cal.stepUp()">
+                              <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-7">
                     <div class="input-group input-group-sm">
