@@ -11,12 +11,6 @@ export class AppComponent implements OnInit {
   title = 'ProyectoTapatio';
 
   ngOnInit(): void {
-    if (environment.production) {
-      if (location.protocol === 'http:') {
-        // NO SE DEBERÍA HACER
-        window.location.href = location.href.replace('http', 'https');
-      }
-    }
   }
 
 
