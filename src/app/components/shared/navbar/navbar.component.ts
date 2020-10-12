@@ -74,9 +74,6 @@ export class NavbarComponent implements OnInit {
           }
         });
       }
-      else{
-        window.confirm("No se ha podido iniciar sesion.")
-      }
     });
   }
 

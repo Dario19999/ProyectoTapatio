@@ -70,6 +70,7 @@ export class PagoComponent implements OnInit {
           }
         }
         else{
+          console.log(datos);
           if(metodo == 1){
             this.pagoEnTienda();
           }
