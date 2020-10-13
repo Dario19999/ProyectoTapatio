@@ -92,9 +92,12 @@ export class CompraComponent implements OnInit {
             let y = 0;
 
             for(let x = 0; x < cantCarrito; x++){
-              if(carrito[x]['id_promo'] == null && carrito[x]['id_boleto'] == id_boleto){
-                y = 1;
+              if(carrito[x]['id_promo'] == id_promo){
+                window.confirm("El codigo que se intenta aplicar ya se aplico.");
+                return
+              }else if(carrito[x]['id_promo'] == null && carrito[x]['id_boleto'] == id_boleto){
 
+                y = 1;
                 let cantidad = Number(carrito[x]['cantidad']);
                 cantidad = cantidad - Number(cantidad_cod);
 
