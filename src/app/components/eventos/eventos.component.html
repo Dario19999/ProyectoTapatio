@@ -28,14 +28,34 @@
                 </div>
             </div>
 
-            <div class="col-md-3 h-100 my-auto">
-                <button class="btn btn-primary mx-auto d-block" type="submit"> Filtrar </button>
+            <div class="col-md-3 p-2 text-center">
+                <label>Estado:</label>
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="estado1" value="3" formControlName="estado">
+                        <label for="estado1" class="form-check-label"> Finalizado</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="estado2" value="1" formControlName="estado">
+                        <label for="estado2" class="form-check-label"> No Finalizado</label>
+                    </div>
+                </div>
             </div>
         </div>
+        <button class="btn btn-primary mx-auto d-block" type="submit"> Filtrar </button>
     </form>
 </div>
 <div class="container-fluid animated fadeIn fast">
-    <div class="row row-cols-1 row-cols-md-3 m-4">
+
+    <div class="row m-4" *ngIf="noEventos">
+        <div class="card mx-auto">
+            <div class="card-body text-center">
+                <h5 class="text-danger">Sin Resultados.</h5>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-3 m-4" *ngIf="noEventos == false">
         <div class="col-md-4" *ngFor="let evento of eventos; let i = index">
             <div class="card">
                 <img class="card-img-top" [src]="'admin/assets/img/eventos/'+evento.evento_img" width="450px" height="300px" alt="Card image cap">

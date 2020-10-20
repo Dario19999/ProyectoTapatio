@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { retry } from 'rxjs/operators';
+import { serialize } from 'object-to-formdata';
 
 @Injectable({
   providedIn: 'root'
@@ -40,5 +41,10 @@ export class EventosService {
 
   getEstadoEvento(id_evento){
     return this.http.get(`${this.url}getEstadoEvento.php?id_evento=${id_evento}`).pipe(retry(3))
+  }
+
+  filtrarEventos( filtros:any ){
+    const FILTROS = serialize(filtros);
+    return this.http.post(`${this.url}filtroEventos.php`,FILTROS).pipe(retry(3))
   }
 }

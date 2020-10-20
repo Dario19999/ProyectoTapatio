@@ -62,7 +62,7 @@
                     </div>
                     <div class="col-md-2 my-auto text-center">
                         <h5>Precio</h5>
-                        <p>{{boleto.precio_bol | currency:'MXN':'symbol'}} </p>
+                        <p>{{boleto.precio_actual_boleto | currency:'MXN':'symbol'}} </p>
                     </div>
                     <div class="col-md-3 my-auto">
                         <div class="input-group inline-group m-0 p-0 justify-content-center align-items-center">
@@ -89,17 +89,7 @@
         </div>
     </ng-container>
 
-    <div class="card mb-3 border-danger" *ngIf="puedeComentar == true && loggedIn == false">
-        <div class="card-body">
-            <div class="row h-100">
-                <div class="col-md-12 text-center">
-                    <h5 class="text-danger">Este evento ha finalizado.</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="card" *ngIf="puedeComentar == true && loggedIn == true">
+    <div class="card" *ngIf="puedeComentar == true">
         <div class="card-header">
             <h4>Comentarios.</h4>
         </div>

@@ -9,9 +9,11 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 })
 export class EventosComponent implements OnInit {
 
-  eventos = null;
+  eventos:any = null;
 
   formFiltros:FormGroup;
+
+  noEventos:boolean = false;
 
   constructor( private router:Router,
                private eventosService:EventosService,
@@ -25,18 +27,31 @@ export class EventosComponent implements OnInit {
 
   formFiltrosInit(){
     this.formFiltros = this.fb.group({
-      tipo:[''],
-      precioMin:[''],
-      precioMax:['']
+      tipo:[null],
+      estado:[1],
+      precioMin:[null],
+      precioMax:[null]
     });
   }
 
   getEventos(){
-    this.eventosService.getEventos(-1).subscribe( resultado => this.eventos = resultado );
+    this.eventosService.getEventos(0).subscribe( resultado => this.eventos = resultado );
   }
 
   filtrar(){
-    this.eventosService.getEventos(this.formFiltros.get('tipo').value).subscribe( resultado => this.eventos = resultado);
+      console.log(this.formFiltros.value);
+      this.eventosService.filtrarEventos(this.formFiltros.value).subscribe( resultado => {
+        if(resultado == 0){
+          this.noEventos = true;
+          console.log(resultado);
+          return
+        }
+        else{
+          this.noEventos = false;
+          this.eventos = resultado;
+          console.log(resultado);
+        }
+      })
   }
 
 
