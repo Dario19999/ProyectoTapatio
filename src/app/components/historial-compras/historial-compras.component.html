@@ -13,6 +13,7 @@
                         <th scope="col" style="width: 10%;">Estado de Pago</th>
                         <th scope="col" style="width: 10%;">Estado de Entrega</th>
                         <th scope="col" style="width: 10%;"></th>
+                        <th scope="col" style="width: 10%;"></th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
@@ -23,6 +24,9 @@
                         <td class="align-middle">{{ compra.pago }}</td>
                         <td class="align-middle">{{ compra.entrega }}</td>
                         <td class="align-middle"><button (click)="verCompra(compra.id_venta)" class="btn btn-outline-primary">Ver más</button></td>
+                        <td class="align-middle">
+                            <a [href]="compra.link_pago" class="btn btn-outline-success"> Link de pago </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

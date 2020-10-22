@@ -6,8 +6,8 @@ import { serialize } from 'object-to-formdata';
 @Injectable()
 export class VentasService {
 
-  url = "https://proyectotapatio.com/PT-API-P/ventas/";
-  // url = "http://localhost:8080/PT-API/ventas/";
+  // url = "https://proyectotapatio.com/PT-API-P/ventas/";
+  url = "http://localhost:8080/PT-API/ventas/";
 
   constructor(private http:HttpClient) { }
 
@@ -23,8 +23,8 @@ export class VentasService {
     return this.http.post(`${this.url}aplicarPromoRelacionado.php?id_usuario=${id_usuario}&codigo=${codigo}`, JSON.stringify(venta)).pipe(retry(3))
   }
 
-  pagoTienda( total:number, fecha:Date, usuario:any ){
+  pagoTienda( total:number, fecha:Date, usuario:any, id_venta ){
     let USUARIO = serialize(usuario);
-    return this.http.post(`${this.url}realizarPagoTienda.php?total=${total}&fecha=${fecha}`, USUARIO).pipe(retry(3))
+    return this.http.post(`${this.url}realizarPagoTienda.php?total=${total}&fecha=${fecha}&id_venta=${id_venta}`, USUARIO).pipe(retry(3))
   }
 }

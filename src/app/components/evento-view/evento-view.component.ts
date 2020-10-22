@@ -64,6 +64,7 @@ export class EventoViewComponent implements OnInit {
     this.loggedIn = this.usuariosService.getEstadoSesion();
     this.activatedRoute.params.subscribe( params => {
       this.getEstadoEvento(params['id']);
+      this.getComentarios(params['id']);
       if(this.loggedIn){
         this.validarComentarios(params['id']);
       }

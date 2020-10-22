@@ -39,14 +39,14 @@ export class PagoComponent implements OnInit {
     }
   }
 
-  pagoEnTienda(){
+  pagoEnTienda( id_venta:number ){
     let fechaPresente = new Date();
     let plazo = fechaPresente.getTime() + (3*24*60*60*1000);
     let fechaLimite = new Date(plazo);
 
     this.usuario = JSON.parse(localStorage.getItem("usuario"));
 
-    this.ventasService.pagoTienda(this.total, fechaLimite, this.usuario).subscribe(datos => {
+    this.ventasService.pagoTienda(this.total, fechaLimite, this.usuario, id_venta).subscribe(datos => {
       if(datos['resultado'] == "ERROR"){
         window.confirm("Ha ocurrido un error inesperado. Intentelo más tarde.");
         return
@@ -72,7 +72,7 @@ export class PagoComponent implements OnInit {
         else{
           console.log(datos);
           if(metodo == 1){
-            this.pagoEnTienda();
+            this.pagoEnTienda(datos['id_venta']);
           }
           else{
 

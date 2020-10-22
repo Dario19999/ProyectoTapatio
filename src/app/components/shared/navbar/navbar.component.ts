@@ -155,7 +155,7 @@ export class NavbarComponent implements OnInit {
         return
       }
       else if(datos['estado'] == 1){
-        this.usuariosService.terminarRegistro(this.formRegistro.value).subscribe( datos => {
+        this.usuariosService.terminarRegistro(this.formRegistro.value, this.usuarioFB.firstName, this.usuarioFB.lastName).subscribe( datos => {
           if(datos['resultado'] == "ERROR"){
             window.confirm("Ocurrio un error. Inténtelo más tarde.");
             return

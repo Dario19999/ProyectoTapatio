@@ -8,8 +8,8 @@ import { serialize } from 'object-to-formdata';
 })
 export class UsuariosService {
 
-  url = "https://proyectotapatio.com/PT-API-P/usuarios/";
-  // url = "http://localhost:8080/PT-API/usuarios/";
+  // url = "https://proyectotapatio.com/PT-API-P/usuarios/";
+  url = "http://localhost:8080/PT-API/usuarios/";
 
   estadoS:boolean = false;
 
@@ -20,9 +20,9 @@ export class UsuariosService {
     return this.http.post(`${this.url}registrarUsuario.php`, USUARIO_FD).pipe(retry(3))
   }
 
-  terminarRegistro( datos:any ){
+  terminarRegistro( datos:any, nombre:string, apellido:string ){
     const DATOS_REG = serialize(datos);
-    return this.http.post(`${this.url}terminarRegistro.php`, DATOS_REG).pipe(retry(3))
+    return this.http.post(`${this.url}terminarRegistro.php?nombre=${nombre}&apellido=${apellido}`, DATOS_REG).pipe(retry(3))
   }
 
   consultaTipoUsuario( id:string ){

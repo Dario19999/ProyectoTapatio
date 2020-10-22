@@ -28,14 +28,14 @@ export class EventosComponent implements OnInit {
   formFiltrosInit(){
     this.formFiltros = this.fb.group({
       tipo:[null],
-      estado:[1],
+      estado:[null],
       precioMin:[null],
       precioMax:[null]
     });
   }
 
   getEventos(){
-    this.eventosService.getEventos(0).subscribe( resultado => this.eventos = resultado );
+    this.eventosService.getEventos(-1).subscribe( resultado => this.eventos = resultado );
   }
 
   filtrar(){
