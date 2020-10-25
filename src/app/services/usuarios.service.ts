@@ -74,4 +74,8 @@ export class UsuariosService {
     return this.http.get(`${this.url}consultaCorreo.php?correo=${correo}&id=${id}`).pipe(retry(3))
   }
 
+  verificarPago(id_venta:number, id_usuario:number ){
+    return this.http.get(`${this.url}verificarPago.php?id_venta=${id_venta}&id_usuario=${id_usuario}`).pipe(retry(3))
+  }
+
 }

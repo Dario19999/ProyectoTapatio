@@ -17,44 +17,8 @@
                             </div>
                             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <form action="">
-                                                <div class="form-row">
-                                                    <div class="col-md-6">
-                                                        <label for="nombreTitular">Nombre del Titular: <small class="text-danger">*</small></label>
-                                                        <input type="text" class="form-control" id="nombreTitular" placeholder="Nombre">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label>Fecha de expiración: <small class="text-danger">*</small></label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control" id="fechaExp" placeholder="Mes">
-                                                            <input type="text" class="form-control" id="fechaExp" placeholder="Año">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="col-md-6">
-                                                        <label for="numeroTarjeta">Numero de Tarjeta: <small class="text-danger">*</small></label>
-                                                        <input type="text" class="form-control" id="numeroTarjeta">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="cvv">Código de Seguridad: <small class="text-danger">*</small></label>
-                                                        <div class="input-group w-25">
-                                                            <input type="text" class="form-control" id="cvv" placeholder="CVV">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row mt-4">
-                                                    <button class="btn btn-outline-success mx-auto">Pagar con Tarjeta</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="img-responsive">
-                                                <img class="img-fluid" src="assets/img/tarjetas.png" alt="tarjeta">
-                                            </div>
-                                        </div>
+                                    <div class="form-row mt-4">
+                                        <button class="btn btn-outline-success mx-auto" type="button" (click)="registrarVenta(2)">Pagar con Tarjeta</button>
                                     </div>
                                 </div>
                             </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { VentasService } from 'src/app/services/ventas.service';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-pago',
@@ -38,8 +39,7 @@ export class PagoComponent implements OnInit {
       }
     }
   }
-
-  pagoEnTienda( id_venta:number ){
+  pagoTienda( id_venta:number ){
     let fechaPresente = new Date();
     let plazo = fechaPresente.getTime() + (3*24*60*60*1000);
     let fechaLimite = new Date(plazo);
@@ -52,7 +52,24 @@ export class PagoComponent implements OnInit {
         return
       }
       else{
-        window.location.href = datos['recibo'];
+        localStorage.removeItem('carrito');
+        this.router.navigate(['historial']);
+      }
+    })
+  }
+
+  pagoTarjeta( id_venta:number ){
+    this.usuario = JSON.parse(localStorage.getItem("usuario"));
+
+    this.ventasService.pagoTarjeta(this.total, id_venta, this.usuario['id_usuario']).subscribe(datos => {
+      if(datos['resultado'] == "ERROR"){
+        window.confirm("Ha ocurrido un error inesperado. Intentelo más tarde.");
+        return
+      }
+      else{
+        window.location.href = datos['url'];
+        localStorage.removeItem('carrito');
+        // this.router.navigate(['historial']);
       }
     })
   }
@@ -70,15 +87,13 @@ export class PagoComponent implements OnInit {
           }
         }
         else{
-          console.log(datos);
+          // console.log(datos);
           if(metodo == 1){
-            this.pagoEnTienda(datos['id_venta']);
+            this.pagoTienda(datos['id_venta']);
           }
           else{
-
+            this.pagoTarjeta(datos['id_venta']);
           }
-          localStorage.removeItem('carrito');
-          this.router.navigate(['historial']);
         }
       }
     })

@@ -27,4 +27,10 @@ export class VentasService {
     let USUARIO = serialize(usuario);
     return this.http.post(`${this.url}realizarPagoTienda.php?total=${total}&fecha=${fecha}&id_venta=${id_venta}`, USUARIO).pipe(retry(3))
   }
+
+  pagoTarjeta( total:number, id_venta:number, id_usuario:string ){
+    return this.http.get(`${this.url}realizarPagoTarjeta.php?total=${total}&id_venta=${id_venta}&id_usuario=${id_usuario}`).pipe(retry(3))
+  }
+
+
 }
