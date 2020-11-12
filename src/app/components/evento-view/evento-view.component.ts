@@ -65,12 +65,14 @@ export class EventoViewComponent implements OnInit {
     this.activatedRoute.params.subscribe( params => {
       this.getEstadoEvento(params['id']);
       this.getComentarios(params['id']);
-      if(this.loggedIn){
-        this.validarComentarios(params['id']);
-      }
       this.eventosService.getEvento(params['id']).subscribe( resultado => this.evento = resultado[0]);
       this.eventosService.getImgs(params['id']).subscribe(resultado => this.imgs = resultado);
       this.boletosService.getBoletos(params['id']).subscribe(resultado => this.boletos = resultado);
+      this.usuario = JSON.parse(localStorage.getItem("usuario"));
+      if(this.usuario != null){
+        this.validarComentarios(params['id']);
+      }
+
     })
   }
 
@@ -123,13 +125,17 @@ export class EventoViewComponent implements OnInit {
   }
 
   insertarComentario( comentario:string, cal:number){
-    this.usuario = JSON.parse(localStorage.getItem("usuario"));
-    this.activatedRoute.params.subscribe( params => {
-      this.usuariosService.insertarComentario(comentario, cal, params['id'], this.usuario['id_usuario']).subscribe( resultado => {
-          this.comentar = false;
-          this.getComentarios(params['id']);
+    if((cal == 0) || (comentario.length < 10)){
+        window.confirm("Ingrese una minimo 10 caracteres y una calificacion a partir de 1");
+    }else{
+      this.usuario = JSON.parse(localStorage.getItem("usuario"));
+      this.activatedRoute.params.subscribe( params => {
+        this.usuariosService.insertarComentario(comentario, cal, params['id'], this.usuario['id_usuario']).subscribe( resultado => {
+            this.comentar = false;
+            this.getComentarios(params['id']);
+        });
       });
-    });
+    }
   }
 
   getComentarios(id_evento:number){

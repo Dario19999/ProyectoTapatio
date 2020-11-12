@@ -42,6 +42,20 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-3 p-2 text-center">
+              <label>Rango de fechas:</label>
+              <div>
+                  <div class="form-check form-check-inline">
+                    <label for="tipo2" class="form-check-label">Inicio: </label>
+                    <input type="date" name="fechaCierre" id="fechaInicio" class="form-control" formControlName="fec_ini">
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <label for="tipo2" class="form-check-label">Fin: </label>
+                    <input type="date" name="fechaCierre" id="fechaCierre" class="form-control" formControlName="fec_fin">
+                  </div>
+              </div>
+          </div>
         </div>
         <button class="btn btn-primary mx-auto d-block" type="submit"> Filtrar </button>
     </form>

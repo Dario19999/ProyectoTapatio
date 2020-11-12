@@ -51,16 +51,21 @@ export class NavbarComponent implements OnInit {
             return
           }
           else if( datos['resultado'] == "OK"){
-
             let usuario = JSON.parse(localStorage.getItem("usuario"));
             usuario["id_usuario"] = datos["id_usuario"];
             localStorage.setItem("usuario", JSON.stringify(usuario));
-            this.cerrar.nativeElement.click();
-
             let estado = null;
             this.usuariosService.consultaTipoUsuario(this.usuarioFB.id).subscribe( resultado => {
+              this.cerrar.nativeElement.click();
               estado = resultado;
-              if(estado[0].tipo_usuario == 0){
+              if(estado[0].activo == 2){
+                localStorage.removeItem("usuario");
+                this.authService.signOut();
+                this.usuariosService.setEstadoSesion(false);
+                this.usuarioFB = null;
+                this.loggedIn = false;
+                window.confirm("Usted ha sido bloqueado de el sistema");
+              }else if(estado[0].tipo_usuario == 0){
                 this.modalRegistro.nativeElement.click();
               }
               else if( estado[0].tipo_usuario == 1){
@@ -138,12 +143,13 @@ export class NavbarComponent implements OnInit {
   }
 
   logOut(): void {
-    this.authService.signOut();
     localStorage.removeItem("usuario");
+    this.authService.signOut();
     this.usuariosService.setEstadoSesion(false);
-    this.router.navigate(['inicio']);
     this.usuarioFB = null;
     this.loggedIn = false;
+    this.router.navigate(['inicio']);
+
   }
 
   guardarRegistro(){

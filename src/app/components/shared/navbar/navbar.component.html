@@ -26,10 +26,10 @@
             <li class="nav-item nav-button" routerLinkActive="active">
                 <a class="nav-link" [routerLink]="['carrito']"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
             </li>
-            <li class="nav-item nav-button" *ngIf="!loggedIn">
+            <li class="nav-item nav-button" *ngIf="usuarioFB == null">
                 <button class="btn btn-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#myModal">Iniciar Sesi&oacute;n</button>
             </li>
-            <li class="nav-item ml-5" *ngIf="loggedIn">
+            <li class="nav-item ml-5" *ngIf="usuarioFB != null">
                 <div class="btn-group">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                     <div class="dropdown-menu">

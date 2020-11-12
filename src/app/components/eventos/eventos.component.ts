@@ -30,7 +30,9 @@ export class EventosComponent implements OnInit {
       tipo:[null],
       estado:[null],
       precioMin:[null],
-      precioMax:[null]
+      precioMax:[null],
+      fec_ini:[null],
+      fec_fin:[null],
     });
   }
 
